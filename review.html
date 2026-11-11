@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Review SWU Free Elective — ส่งรีวิว</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAVIGATION BAR
+  ══════════════════════════════════════════════════════ -->
+  <nav class="navbar" role="navigation" aria-label="เมนูหลัก">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="หน้าหลัก">
+        <div class="navbar__logo-icon">🎓</div>
+        <span>Review SWU Free Elective</span>
+      </a>
+      <div class="navbar__nav">
+        <a href="index.html"  class="nav-link">หน้าหลัก</a>
+        <a href="review.html" class="nav-link nav-link--active nav-link--cta" aria-current="page">✍️ รีวิว</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ══════════════════════════════════════════════════════
+         PAGE HEADER
+    ══════════════════════════════════════════════════════ -->
+    <div class="page-header">
+      <div class="page-header__tag">Share Your Experience</div>
+      <h1 class="page-header__title">รีวิววิชาเสรี มศว</h1>
+      <p class="page-header__sub">
+        แบ่งปันประสบการณ์เรียนให้กับเพื่อน ๆ นักศึกษา มศว
+        เพื่อช่วยกันตัดสินใจเลือกวิชาเสรีได้ดียิ่งขึ้น
+      </p>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         FORM CONTAINER
+    ══════════════════════════════════════════════════════ -->
+    <div class="form-container">
+
+      <!-- ── SUCCESS MESSAGE (hidden until submission) ───── -->
+      <div id="successMessage" role="alert" aria-live="polite">
+        <div class="success-icon">✅</div>
+        <h2 class="success-title">ส่งรีวิวสำเร็จแล้ว!</h2>
+        <p class="success-sub">
+          ขอบคุณที่แบ่งปันประสบการณ์เรียนให้กับเพื่อน ๆ มศว
+          รีวิวของคุณจะปรากฏบนหน้าหลักทันที
+        </p>
+        <div class="success-actions">
+          <button id="goHomeBtn"    class="btn-primary">🏠 กลับหน้าหลัก</button>
+          <button id="reviewMoreBtn" class="btn-secondary">✍️ รีวิววิชาอื่นต่อ</button>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           REVIEW FORM
+      ══════════════════════════════════════════════════ -->
+      <form id="reviewForm" novalidate>
+        <div class="form-card">
+
+          <!-- ─── SECTION 1: Reviewer Info ───────────────── -->
+          <div class="form-section">
+            <div class="form-section__title">
+              <div class="form-section__title-icon">👤</div>
+              ข้อมูลผู้รีวิว
+            </div>
+
+            <div class="form-group">
+              <label for="displayName" class="form-label">
+                ชื่อที่ต้องการแสดง <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="displayName"
+                name="displayName"
+                class="form-input"
+                placeholder="เช่น นักศึกษาปี 2, เด็กวิทย์, etc."
+                autocomplete="off"
+                maxlength="60"
+              />
+              <span class="form-hint">ไม่ต้องใช้ชื่อจริงหรือรหัสนักศึกษา</span>
+            </div>
+          </div>
+
+          <!-- ─── SECTION 2: Course Info ─────────────────── -->
+          <div class="form-section">
+            <div class="form-section__title">
+              <div class="form-section__title-icon">📚</div>
+              ข้อมูลรายวิชา
+            </div>
+
+            <!-- Faculty -->
+            <div class="form-group">
+              <label for="facultySelect" class="form-label">
+                คณะที่เปิดสอนวิชานี้ <span class="required">*</span>
+              </label>
+              <select id="facultySelect" name="faculty" class="form-select">
+                <option value="">— เลือกคณะ —</option>
+              </select>
+            </div>
+
+            <!-- Course (dependent on Faculty) -->
+            <div class="form-group">
+              <label for="courseSelect" class="form-label">
+                รายวิชา <span class="required">*</span>
+              </label>
+              <select id="courseSelect" name="courseId" class="form-select" disabled>
+                <option value="">— เลือกคณะก่อน —</option>
+              </select>
+              <span class="form-hint">รายการวิชาจะอัปเดตตามคณะที่เลือก</span>
+            </div>
+
+            <!-- Credits -->
+            <div class="form-group" id="creditsGroup">
+              <span class="form-label">จำนวนหน่วยกิต <span class="required">*</span></span>
+              <div class="option-group">
+                <input type="radio" id="credits4" name="credits" value="4" />
+                <label for="credits4">🔢 4 หน่วยกิต</label>
+
+                <input type="radio" id="credits6" name="credits" value="6" />
+                <label for="credits6">🔢 6 หน่วยกิต</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- ─── SECTION 3: Class Details ───────────────── -->
+          <div class="form-section">
+            <div class="form-section__title">
+              <div class="form-section__title-icon">🗓️</div>
+              รายละเอียดการเรียน
+            </div>
+
+            <!-- Learning Format -->
+            <div class="form-group" id="formatGroup">
+              <span class="form-label">รูปแบบการเรียน <span class="required">*</span></span>
+              <div class="option-group">
+                <input type="radio" id="formatOnline"  name="learningFormat" value="Online" />
+                <label for="formatOnline">💻 Online</label>
+
+                <input type="radio" id="formatOnsite"  name="learningFormat" value="Onsite" />
+                <label for="formatOnsite">🏫 Onsite</label>
+
+                <input type="radio" id="formatHybrid"  name="learningFormat" value="Hybrid" />
+                <label for="formatHybrid">🔄 Hybrid</label>
+              </div>
+            </div>
+
+            <!-- Class Schedule -->
+            <div class="form-group">
+              <label for="classSchedule" class="form-label">
+                ตารางเรียน
+                <span style="font-weight:400; color: var(--color-grey);">(ไม่บังคับ)</span>
+              </label>
+              <input
+                type="text"
+                id="classSchedule"
+                name="classSchedule"
+                class="form-input"
+                placeholder="เช่น จันทร์ 09:00–12:00, อังคาร-พฤหัสบดี 13:00–15:00"
+                autocomplete="off"
+                maxlength="100"
+              />
+            </div>
+
+            <!-- Attendance -->
+            <div class="form-group" id="attendanceGroup">
+              <span class="form-label">การเช็คชื่อ <span class="required">*</span></span>
+              <div class="option-group">
+                <input type="radio" id="attYes"     name="attendance" value="มีการเช็คชื่อ" />
+                <label for="attYes">✅ มีการเช็คชื่อ</label>
+
+                <input type="radio" id="attNo"      name="attendance" value="ไม่มีการเช็คชื่อ" />
+                <label for="attNo">❌ ไม่มีการเช็คชื่อ</label>
+
+                <input type="radio" id="attUnsure"  name="attendance" value="ไม่แน่ใจ" />
+                <label for="attUnsure">❓ ไม่แน่ใจ</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- ─── SECTION 4: Ratings ──────────────────────── -->
+          <div class="form-section" id="ratingsSection">
+            <div class="form-section__title">
+              <div class="form-section__title-icon">⭐</div>
+              ให้คะแนนวิชานี้
+            </div>
+            <span class="form-hint" style="display:block; margin-bottom:16px;">
+              กดตัวเลข 1–5 เพื่อให้คะแนนในแต่ละหัวข้อ (5 = ดีที่สุด)
+            </span>
+
+            <div class="ratings-form-section">
+
+              <div class="form-group">
+                <div class="rating-form-row">
+                  <span class="rating-form-row__label">1. ความเข้าใจง่ายของเนื้อหา <span class="required">*</span></span>
+                  <div class="rating-group" data-rating-key="contentClarity" role="group" aria-label="ความเข้าใจง่ายของเนื้อหา">
+                    <button type="button" class="rating-btn" data-value="1" aria-label="1 คะแนน">1</button>
+                    <button type="button" class="rating-btn" data-value="2" aria-label="2 คะแนน">2</button>
+                    <button type="button" class="rating-btn" data-value="3" aria-label="3 คะแนน">3</button>
+                    <button type="button" class="rating-btn" data-value="4" aria-label="4 คะแนน">4</button>
+                    <button type="button" class="rating-btn" data-value="5" aria-label="5 คะแนน">5</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="rating-form-row">
+                  <span class="rating-form-row__label">2. ความเหมาะสมของปริมาณงาน <span class="required">*</span></span>
+                  <div class="rating-group" data-rating-key="workloadAppropriateness" role="group" aria-label="ความเหมาะสมของปริมาณงาน">
+                    <button type="button" class="rating-btn" data-value="1" aria-label="1 คะแนน">1</button>
+                    <button type="button" class="rating-btn" data-value="2" aria-label="2 คะแนน">2</button>
+                    <button type="button" class="rating-btn" data-value="3" aria-label="3 คะแนน">3</button>
+                    <button type="button" class="rating-btn" data-value="4" aria-label="4 คะแนน">4</button>
+                    <button type="button" class="rating-btn" data-value="5" aria-label="5 คะแนน">5</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="rating-form-row">
+                  <span class="rating-form-row__label">3. ความง่ายของข้อสอบ <span class="required">*</span></span>
+                  <div class="rating-group" data-rating-key="examEase" role="group" aria-label="ความง่ายของข้อสอบ">
+                    <button type="button" class="rating-btn" data-value="1" aria-label="1 คะแนน">1</button>
+                    <button type="button" class="rating-btn" data-value="2" aria-label="2 คะแนน">2</button>
+                    <button type="button" class="rating-btn" data-value="3" aria-label="3 คะแนน">3</button>
+                    <button type="button" class="rating-btn" data-value="4" aria-label="4 คะแนน">4</button>
+                    <button type="button" class="rating-btn" data-value="5" aria-label="5 คะแนน">5</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="rating-form-row">
+                  <span class="rating-form-row__label">4. ความใจดีของอาจารย์ <span class="required">*</span></span>
+                  <div class="rating-group" data-rating-key="instructorKindness" role="group" aria-label="ความใจดีของอาจารย์">
+                    <button type="button" class="rating-btn" data-value="1" aria-label="1 คะแนน">1</button>
+                    <button type="button" class="rating-btn" data-value="2" aria-label="2 คะแนน">2</button>
+                    <button type="button" class="rating-btn" data-value="3" aria-label="3 คะแนน">3</button>
+                    <button type="button" class="rating-btn" data-value="4" aria-label="4 คะแนน">4</button>
+                    <button type="button" class="rating-btn" data-value="5" aria-label="5 คะแนน">5</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="rating-form-row">
+                  <span class="rating-form-row__label">5. ความง่ายของการให้เกรด <span class="required">*</span></span>
+                  <div class="rating-group" data-rating-key="gradingEase" role="group" aria-label="ความง่ายของการให้เกรด">
+                    <button type="button" class="rating-btn" data-value="1" aria-label="1 คะแนน">1</button>
+                    <button type="button" class="rating-btn" data-value="2" aria-label="2 คะแนน">2</button>
+                    <button type="button" class="rating-btn" data-value="3" aria-label="3 คะแนน">3</button>
+                    <button type="button" class="rating-btn" data-value="4" aria-label="4 คะแนน">4</button>
+                    <button type="button" class="rating-btn" data-value="5" aria-label="5 คะแนน">5</button>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /ratings-form-section -->
+          </div><!-- /ratingsSection -->
+
+          <!-- ─── SECTION 5: Written Review ──────────────── -->
+          <div class="form-section">
+            <div class="form-section__title">
+              <div class="form-section__title-icon">💬</div>
+              รีวิวของคุณ
+            </div>
+
+            <div class="form-group">
+              <label for="writtenReview" class="form-label">
+                แบ่งปันประสบการณ์เรียน <span class="required">*</span>
+              </label>
+              <textarea
+                id="writtenReview"
+                name="writtenReview"
+                class="form-textarea"
+                rows="6"
+                placeholder="มาแชร์ประสบการณ์เรียนวิชานี้ให้เพื่อน ๆ ฟังกัน...
+
+เช่น รูปแบบการสอน ปริมาณงาน ลักษณะข้อสอบ การวัดผล ข้อดี-ข้อเสีย และคำแนะนำสำหรับน้องที่จะเรียน"
+              ></textarea>
+              <span class="form-hint">เขียนอย่างตรงไปตรงมา เนื้อหาของคุณจะช่วยเพื่อน ๆ ได้มาก</span>
+            </div>
+          </div>
+
+          <!-- ─── SUBMIT ───────────────────────────────────── -->
+          <button type="submit" id="submitBtn" class="btn-submit">
+            ✅ ส่งรีวิว
+          </button>
+
+        </div><!-- /form-card -->
+      </form>
+
+    </div><!-- /form-container -->
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <p>
+      <strong>Review SWU Free Elective</strong> — พื้นที่แบ่งปันประสบการณ์จากนักศึกษา มศว
+    </p>
+    <p class="footer__warning">
+      ⚠️ รีวิวเหล่านี้จัดเก็บเฉพาะในเบราว์เซอร์ของคุณเท่านั้น ไม่มีการซิงก์ระหว่างผู้ใช้คนอื่น
+    </p>
+  </footer>
+
+  <!-- Scripts (order matters: courses → storage → review) -->
+  <script src="js/courses.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/review.js"></script>
+</body>
+</html>

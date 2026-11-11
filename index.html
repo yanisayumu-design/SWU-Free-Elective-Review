@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Review SWU Free Elective — หน้าหลัก</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAVIGATION BAR
+  ══════════════════════════════════════════════════════ -->
+  <nav class="navbar" role="navigation" aria-label="เมนูหลัก">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="หน้าหลัก">
+        <div class="navbar__logo-icon">🎓</div>
+        <span>Review SWU Free Elective</span>
+      </a>
+      <div class="navbar__nav">
+        <a href="index.html"  class="nav-link nav-link--active" aria-current="page">หน้าหลัก</a>
+        <a href="review.html" class="nav-link nav-link--cta">✍️ รีวิว</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ══════════════════════════════════════════════════════
+         HERO SECTION (NO GRADIENTS)
+    ══════════════════════════════════════════════════════ -->
+    <section class="hero" aria-label="แบนเนอร์หลัก">
+      <div class="hero__content">
+        <div class="hero__tag">Srinakharinwirot University</div>
+        <h1 class="hero__title">
+          SWU FREE<br><span>ELECTIVE</span> REVIEW
+        </h1>
+        <p class="hero__subtitle">
+          คลังรีวิวมุมมองจริงจากเพื่อน มศว<br>
+          เพื่อให้คุณเลือกวิชาเสรีที่ใช่ด้วยตนเอง
+        </p>
+        <a href="review.html" class="hero__cta">
+          ✍️ Review Your SWU Free Elective
+        </a>
+
+        <!-- Dynamic stat counters -->
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat-num" id="statReviews">—</span>
+            <span class="hero__stat-label">รีวิวทั้งหมด</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-num" id="statCourses">—</span>
+            <span class="hero__stat-label">รายวิชาในระบบ</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-num" id="statFaculties">—</span>
+            <span class="hero__stat-label">คณะ/ส่วนงาน</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         SEARCH SECTION
+    ══════════════════════════════════════════════════════ -->
+    <section class="search-section" aria-label="ค้นหารีวิว">
+      <div class="search-section__inner">
+        <p class="search-section__title">🔍 ค้นหารีวิววิชาเสรี</p>
+        <div class="search-row">
+          <div class="search-bar-wrap">
+            <span class="search-bar-wrap__icon" aria-hidden="true">🔍</span>
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="พิมพ์ชื่อวิชา รหัสวิชา (ไทย/อังกฤษ) หรือคำค้นหา..."
+              autocomplete="off"
+              aria-label="ค้นหาวิชา"
+            />
+          </div>
+          <div class="faculty-select-wrap">
+            <select id="facultyFilter" aria-label="กรองตามคณะ">
+              <option value="">— เลือกทุกคณะ —</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         REVIEWS LISTING
+    ══════════════════════════════════════════════════════ -->
+    <section class="reviews-section" aria-label="รายการรีวิว">
+      <div class="reviews-section__header">
+        <h2 class="reviews-section__title">รีวิววิชาเสรีจากเพื่อน มศว</h2>
+        <span id="resultCount" aria-live="polite"></span>
+      </div>
+      <div class="reviews-grid" id="reviewsGrid" aria-label="การ์ดรีวิว">
+        <!-- Injected by home.js -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <p>
+      <strong>Review SWU Free Elective</strong> — พื้นที่แบ่งปันประสบการณ์จากนักศึกษา มศว
+    </p>
+    <p class="footer__warning">
+      ⚠️ รีวิวเหล่านี้จัดเก็บเฉพาะในเบราว์เซอร์ของคุณเท่านั้น ไม่มีการซิงก์ระหว่างผู้ใช้คนอื่น
+    </p>
+  </footer>
+
+  <!-- Scripts (order matters: courses → storage → home) -->
+  <script src="js/courses.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
