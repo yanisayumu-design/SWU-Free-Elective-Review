@@ -37,6 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
   renderReviews();
   updateStatsCounters();
 
+  // ── Cloud Sync with Google Sheets ──────────────────────────────────────────
+  syncReviewsFromCloud(() => {
+    renderReviews();
+    updateStatsCounters();
+  });
+
   // ══════════════════════════════════════════════════════════════════════════
   //  RENDER FUNCTIONS
   // ══════════════════════════════════════════════════════════════════════════

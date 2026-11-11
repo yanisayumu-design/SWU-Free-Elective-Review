@@ -1,37 +1,17 @@
 /**
- * storage.js — Review data storage layer (localStorage)
+ * storage.js — Review data storage layer (Hybrid localStorage + Google Sheets)
  *
- * ⚠️  IMPORTANT NOTE ON localStorage:
- *   Reviews saved here are stored ONLY in this browser on this device.
- *   They do NOT sync between different users, browsers, or devices.
- *   To share reviews across users, a backend/database integration is needed.
- *
- * REVIEW DATA STRUCTURE:
- * {
- *   reviewId:       string  — unique identifier
- *   displayName:    string  — public name chosen by reviewer
- *   faculty:        string  — faculty_name matching master course database
- *   course_id:      string  — Thai course ID (e.g. สสน01)
- *   course_code:    string  — English course code (e.g. ZIL01)
- *   name_th:        string  — Thai course name
- *   name_en:        string  — English course name
- *   courseId:       string  — convenience composite ID ("สสน01 / ZIL01")
- *   courseName:     string  — convenience course name (Thai)
- *   credits:        number  — 4 or 6
- *   learningFormat: string  — "Online" | "Onsite" | "Hybrid"
- *   classSchedule:  string  — e.g. "จันทร์ 09:00–12:00"
- *   attendance:     string  — "มีการเช็คชื่อ" | "ไม่มีการเช็คชื่อ" | "ไม่แน่ใจ"
- *   ratings: {
- *     contentClarity:          number (1-5),
- *     workloadAppropriateness: number (1-5),
- *     examEase:                number (1-5),
- *     instructorKindness:      number (1-5),
- *     gradingEase:             number (1-5)
- *   },
- *   writtenReview:  string  — review text
- *   createdAt:      string  — ISO 8601 timestamp
- * }
+ * 🔗 GOOGLE SHEETS CLOUD INTEGRATION:
+ *   วาง URL ของ Google Apps Script Web App ที่ได้จากการ Deploy ในบรรทัดด้านล่าง
+ *   (ดูวิธีทำอย่างละเอียดในไฟล์ GoogleAppsScript_Code.gs)
+ *   เมื่อใส่ URL แล้ว:
+ *     - ข้อมูลรีวิวทั้งหมดจะถูกซิงก์จาก Google Sheets แบบ Real-time
+ *     - เมื่อเพื่อนคนไหนส่งรีวิว ข้อมูลจะวิ่งเข้า Google Sheets ทันที
+ *     - ทุกคนที่เปิดเว็บจะเห็นรีวิวอัปเดตตรงกันจากทุกเครื่อง!
  */
+
+// ⬇️ วาง Web App URL ที่ได้จาก Google Apps Script ที่นี่ (ถ้ายังไม่ใส่ จะทำงานผ่าน localStorage ตามปกติ)
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAtvAQLCTd7OD90oWpF6QTHKF43Qfqg72-v_FzI-IgeODO73hOCloVw5v2-pcEOSDM/exec";
 
 const STORAGE_KEY = "swu_reviews";
 
@@ -50,7 +30,7 @@ function getAllReviews() {
 }
 
 /**
- * Saves a new review to localStorage.
+ * Saves a new review locally and syncs to Google Sheets cloud.
  * Assigns a unique reviewId and createdAt timestamp automatically.
  * @param {Object} reviewData
  * @returns {Object} the saved review
@@ -64,7 +44,49 @@ function saveReview(reviewData) {
   };
   reviews.push(newReview);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+
+  // ส่งข้อมูลเข้า Google Sheets แบบเบื้องหลัง (Background POST)
+  if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.startsWith("http")) {
+    try {
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors", // จำเป็นสำหรับ Google Apps Script เพื่อเลี่ยง CORS
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(newReview),
+      }).catch(err => {
+        console.warn("Google Sheets sync failed:", err);
+      });
+    } catch (err) {
+      console.warn("Could not dispatch to Google Sheets:", err);
+    }
+  }
+
   return newReview;
+}
+
+/**
+ * Syncs reviews from Google Sheets in the background.
+ * If data is retrieved, updates localStorage and invokes the onUpdated callback.
+ * @param {Function} [onUpdated]
+ */
+async function syncReviewsFromCloud(onUpdated) {
+  if (!GOOGLE_SCRIPT_URL || !GOOGLE_SCRIPT_URL.startsWith("http")) return;
+
+  try {
+    const resp = await fetch(GOOGLE_SCRIPT_URL);
+    if (!resp.ok) return;
+    const cloudReviews = await resp.json();
+
+    if (Array.isArray(cloudReviews) && cloudReviews.length > 0) {
+      // อัปเดตข้อมูลล่าสุดจาก Google Sheets ลงในแคช localStorage
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudReviews));
+      if (typeof onUpdated === "function") {
+        onUpdated(cloudReviews);
+      }
+    }
+  } catch (err) {
+    console.warn("Could not fetch reviews from Google Sheets:", err);
+  }
 }
 
 /**
@@ -125,8 +147,8 @@ function generateId() {
 }
 
 /**
- * Seeds sample reviews from the master course database.
- * Upgrades previously cached old sample data if detected.
+ * Seeds initial sample reviews from the master course database.
+ * Only runs if localStorage is completely empty and no Google Sheets data exists yet.
  */
 function seedSampleReviews() {
   const existing = getAllReviews();
@@ -134,7 +156,7 @@ function seedSampleReviews() {
     r => r.courseId === "GEN0101" || r.faculty === "sci" || r.faculty === "hum"
   );
 
-  // If already populated with new courses, do not overwrite user data
+  // If already populated with valid reviews, do not overwrite
   if (existing.length > 0 && !hasOldMockData) return;
 
   const sampleReviews = [
