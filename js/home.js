@@ -50,7 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderReviews() {
     const query       = searchInput.value;
     const facultyName = facultyFilter.value;
-    const reviews     = searchReviews(query, facultyName);
+    const reviews     = searchReviews(query, facultyName)
+      .filter(r => (r.name_th || r.courseName || r.course_id || r.course_code));
 
     reviewsGrid.innerHTML = "";
 
@@ -126,10 +127,11 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
 
+      ${(r.writtenReview && r.writtenReview.trim()) ? `
       <div class="review-card__written">
         <div class="written-label">💬 รีวิวจากผู้เรียน</div>
-        <p class="written-text">${escHtml(r.writtenReview)}</p>
-      </div>
+        <p class="written-text">${escHtml(r.writtenReview.trim())}</p>
+      </div>` : ""}
     `;
 
     return card;

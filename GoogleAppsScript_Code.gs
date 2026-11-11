@@ -1,33 +1,36 @@
 /**
- * Google Apps Script — Review SWU Free Elective Backend
+ * Google Apps Script — Review SWU Free Elective Backend (Clean Sheet Edition)
  *
- * เชื่อมต่อกับ Google Sheet สำหรับบันทึกและอ่านรีวิวอัตโนมัติ
- * ไม่ต้องใช้ Database หรือ PHP / ทำงานบนคลาวด์ของ Google ฟรี 100%
- *
- * ─────────────────────────────────────────────────────────────────
- * 📋 วิธีติดตั้งและเปิดใช้งาน (ใช้เวลา 2 นาที):
- * 1. เปิด Google Sheet แผ่นของคุณ:
- *    https://docs.google.com/spreadsheets/d/1GjJBbpb4Yyi4SxveuQZ7-DWzTrgZpBmqYo4siFqwF1E/
+ * ระบบเชื่อมต่อ Google Sheet สำหรับโปรเจกต์ Review SWU Free Elective
+ * 
+ * ─────────────────────────────────────────────────────────────────────────────
+ * 🌟 วิธีตั้งค่า Google Sheet แผ่นใหม่ให้สะอาด 100% (แนะนำมาก!):
+ * ─────────────────────────────────────────────────────────────────────────────
+ * 1. ไปที่ Google Drive แล้วสร้าง Google Sheet แผ่นใหม่เอี่ยม (ตั้งชื่อว่า "SWU Free Elective Reviews")
  * 2. เมนูด้านบนเลือก: "ส่วนขยาย" (Extensions) -> "Apps Script"
- * 3. ลบโค้ดเดิมทั้งหมดในกล่องข้อความออก แล้ว Copy โค้ดในไฟล์นี้ทั้งหมดไปวางแทน
- * 4. กดไอคอนแผ่นดิสก์ 💾 (บันทึก / Save project)
- * 5. กดปุ่มสีน้ำเงินมุมบนขวา "การทำให้ใช้งานได้" (Deploy) -> "การทำให้ใช้งานได้รายการใหม่" (New deployment)
- * 6. กดที่ไอคอนรูปเฟือง ⚙️ ด้านซ้าย เลือก "เว็บแอป" (Web app)
- * 7. ตั้งค่า:
- *    - คำอธิบาย (Description): SWU Review API
- *    - ปฏิบัติการในฐานะ (Execute as): ฉัน (Me)
- *    - ผู้ที่มีสิทธิ์เข้าถึง (Who has access): ทุกคน (Anyone)  <-- สำคัญมาก! ต้องเลือก Anyone
- * 8. กดปุ่ม "ทำให้ใช้งานได้" (Deploy)
- * 9. กดยอมรับสิทธิ์ (Authorize access) แล้วเลือกบัญชี Google ของคุณ -> กด Advanced -> Go to ... (unsafe) -> Allow
- * 10. Copy ลิงก์ "URL ของเว็บแอป" (Web app URL) ที่ลงท้ายด้วย /exec
- * 11. นำ URL นั้นมาใส่ในไฟล์ js/storage.js ตรงบรรทัด:
- *     const GOOGLE_SCRIPT_URL = "URL_ที่คุณคัดลอกมา";
- * ─────────────────────────────────────────────────────────────────
+ * 3. ลบโค้ดเดิมในกล่องออกทั้งหมด แล้ว Copy โค้ดในไฟล์นี้ทั้งหมดไปวางแทน
+ * 4. กดไอคอนแผ่นดิสก์ 💾 บันทึก (Save project)
+ * 5. [สร้างตารางให้อัตโนมัติ]:
+ *    - แถบเมนูด้านบนตรงคำว่า "เลือกฟังก์ชัน" ให้เลือก "setupCleanSheet"
+ *    - กดปุ่ม "เรียกใช้" (Run) 1 ครั้ง
+ *    - กดยอมรับสิทธิ์ (Authorize) ให้สคริปต์
+ *    -> กลับไปดูที่ Google Sheet จะเห็นหัวตารางและ 6 รีวิวตัวอย่างสวยงามถูกสร้างทันที!
+ * 6. [เผยแพร่เป็น Web App]:
+ *    - กดปุ่มสีน้ำเงินมุมบนขวา "การทำให้ใช้งานได้" (Deploy) -> "การทำให้ใช้งานได้รายการใหม่" (New deployment)
+ *    - กดรูปเฟือง ⚙️ ด้านซ้าย เลือก "เว็บแอป" (Web app)
+ *    - ตั้งค่า:
+ *      • คำอธิบาย: SWU Review API
+ *      • ปฏิบัติการในฐานะ (Execute as): ฉัน (Me)
+ *      • ผู้ที่มีสิทธิ์เข้าถึง (Who has access): ทุกคน (Anyone)  <-- สำคัญมาก!
+ *    - กด "ทำให้ใช้งานได้" (Deploy)
+ * 7. Copy ลิงก์ "URL ของเว็บแอป" (ลงท้ายด้วย /exec)
+ * 8. นำ URL ไปวางใน js/storage.js ตรงบรรทัด:
+ *    const GOOGLE_SCRIPT_URL = "URL_ที่คุณคัดลอกมา";
+ * ─────────────────────────────────────────────────────────────────────────────
  */
 
 function getTargetSheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  // ใช้แผ่นงานปัจจุบันหรือแผ่นแรก
   return ss.getActiveSheet() || ss.getSheets()[0];
 }
 
@@ -37,22 +40,23 @@ function doGet(e) {
     var sheet = getTargetSheet();
     var rows = sheet.getDataRange().getValues();
 
+    // ถ้าชีตยังว่าง ให้สร้างหัวตารางและข้อมูลตัวอย่างให้อัตโนมัติ
     if (rows.length <= 1) {
-      return ContentService.createTextOutput(JSON.stringify([]))
-        .setMimeType(ContentService.MimeType.JSON);
+      setupCleanSheet();
+      rows = sheet.getDataRange().getValues();
     }
 
     var headers = rows[0];
 
-    // ค้นหาตำแหน่งคอลัมน์แบบยืดหยุ่น (รองรับทั้งภาษาไทยและอังกฤษจาก Google Form)
+    // ตรวจหาตำแหน่งคอลัมน์แบบยืดหยุ่น
     var colMap = {
       timestamp:        findCol(headers, ["timestamp", "ประทับเวลา", "วันที่"]),
-      displayName:      findCol(headers, ["displayname", "ชื่อที่", "ชื่อผู้รีวิว", "ชื่อ"]),
+      displayName:      findCol(headers, ["displayname", "ชื่อผู้รีวิว", "ชื่อที่", "ชื่อ"]),
       faculty:          findCol(headers, ["faculty", "คณะ"]),
-      courseId:         findCol(headers, ["course_id", "courseid", "รหัสวิชา"]),
-      courseCode:       findCol(headers, ["course_code", "coursecode", "รหัสวิชาภาษาอังกฤษ"]),
-      nameTh:           findCol(headers, ["name_th", "nameth", "ชื่อวิชา", "coursename"]),
-      nameEn:           findCol(headers, ["name_en", "nameen", "ชื่อภาษาอังกฤษ"]),
+      courseId:         findCol(headers, ["course_id", "courseid", "รหัสวิชา (ไทย)", "รหัสวิชา"]),
+      courseCode:       findCol(headers, ["course_code", "coursecode", "รหัสวิชา (อังกฤษ)", "รหัสวิชาภาษาอังกฤษ"]),
+      nameTh:           findCol(headers, ["name_th", "nameth", "ชื่อวิชา (ไทย)", "ชื่อวิชา"]),
+      nameEn:           findCol(headers, ["name_en", "nameen", "ชื่อวิชา (อังกฤษ)", "ชื่อภาษาอังกฤษ"]),
       credits:          findCol(headers, ["credits", "credit", "หน่วยกิต"]),
       learningFormat:   findCol(headers, ["learningformat", "format", "รูปแบบ"]),
       classSchedule:    findCol(headers, ["classschedule", "schedule", "ตารางเรียน", "เวลา"]),
@@ -62,28 +66,31 @@ function doGet(e) {
       ratingExam:       findCol(headers, ["examease", "ข้อสอบ", "การสอบ"]),
       ratingInstructor: findCol(headers, ["instructorkindness", "อาจารย์", "ผู้สอน"]),
       ratingGrading:    findCol(headers, ["gradingease", "เกรด", "ตัดเกรด"]),
-      writtenReview:    findCol(headers, ["writtenreview", "รีวิว", "ความคิดเห็น", "ประสบการณ์", "ข้อเสนอแนะ"]),
-      reviewId:         findCol(headers, ["reviewid", "id", "รหัสรีวิว"])
+      writtenReview:    findCol(headers, ["writtenreview", "รีวิวจากผู้เรียน", "รีวิว", "ความคิดเห็น", "ประสบการณ์"]),
+      reviewId:         findCol(headers, ["reviewid", "รหัสอ้างอิง", "id"])
     };
 
     var reviews = [];
 
     for (var i = 1; i < rows.length; i++) {
       var row = rows[i];
-      // ข้ามแถวที่ว่างเปล่า
-      if (!row || row.every(function(cell) { return cell === ""; })) continue;
+      if (!row || row.every(function(cell) { return String(cell).trim() === ""; })) continue;
+
+      var rCourseId   = colMap.courseId !== -1 ? String(row[colMap.courseId]).trim() : "";
+      var rCourseCode = colMap.courseCode !== -1 ? String(row[colMap.courseCode]).trim() : "";
+      var rNameTh     = colMap.nameTh !== -1 ? String(row[colMap.nameTh]).trim() : "";
+      var rNameEn     = colMap.nameEn !== -1 ? String(row[colMap.nameEn]).trim() : "";
+
+      // ข้ามแถวที่ไม่มีข้อมูลรายวิชา (แถวขยะ/แถวทดสอบที่ไม่ได้เลือกวิชา)
+      if (!rCourseId && !rCourseCode && !rNameTh) continue;
 
       var rTimestamp   = colMap.timestamp !== -1 ? row[colMap.timestamp] : "";
-      var rDisplayName = colMap.displayName !== -1 ? row[colMap.displayName] : "นักศึกษา มศว";
-      var rFaculty     = colMap.faculty !== -1 ? row[colMap.faculty] : "";
-      var rCourseId    = colMap.courseId !== -1 ? row[colMap.courseId] : "";
-      var rCourseCode  = colMap.courseCode !== -1 ? row[colMap.courseCode] : "";
-      var rNameTh      = colMap.nameTh !== -1 ? row[colMap.nameTh] : "";
-      var rNameEn      = colMap.nameEn !== -1 ? row[colMap.nameEn] : "";
+      var rDisplayName = colMap.displayName !== -1 ? String(row[colMap.displayName]).trim() : "นักศึกษา มศว";
+      var rFaculty     = colMap.faculty !== -1 ? String(row[colMap.faculty]).trim() : "";
       var rCredits     = colMap.credits !== -1 ? parseCredits(row[colMap.credits]) : 4;
-      var rFormat      = colMap.learningFormat !== -1 ? row[colMap.learningFormat] : "Onsite";
-      var rSchedule    = colMap.classSchedule !== -1 ? row[colMap.classSchedule] : "";
-      var rAttendance  = colMap.attendance !== -1 ? row[colMap.attendance] : "มีการเช็คชื่อ";
+      var rFormat      = colMap.learningFormat !== -1 ? String(row[colMap.learningFormat]).trim() : "Onsite";
+      var rSchedule    = colMap.classSchedule !== -1 ? String(row[colMap.classSchedule]).trim() : "";
+      var rAttendance  = colMap.attendance !== -1 ? String(row[colMap.attendance]).trim() : "มีการเช็คชื่อ";
 
       var rContent  = colMap.ratingContent !== -1 ? parseScore(row[colMap.ratingContent]) : 5;
       var rWorkload = colMap.ratingWorkload !== -1 ? parseScore(row[colMap.ratingWorkload]) : 5;
@@ -91,27 +98,27 @@ function doGet(e) {
       var rInst     = colMap.ratingInstructor !== -1 ? parseScore(row[colMap.ratingInstructor]) : 5;
       var rGrading  = colMap.ratingGrading !== -1 ? parseScore(row[colMap.ratingGrading]) : 5;
 
-      var rWritten = colMap.writtenReview !== -1 ? row[colMap.writtenReview] : "";
-      var rId      = (colMap.reviewId !== -1 && row[colMap.reviewId]) ? row[colMap.reviewId] : ("gs_row_" + (i + 1));
+      var rWritten = colMap.writtenReview !== -1 ? String(row[colMap.writtenReview]).trim() : "";
+      var rId      = (colMap.reviewId !== -1 && row[colMap.reviewId]) ? String(row[colMap.reviewId]) : ("gs_row_" + (i + 1));
 
       var createdAtStr = rTimestamp
         ? (rTimestamp instanceof Date ? rTimestamp.toISOString() : new Date(rTimestamp).toISOString())
         : new Date().toISOString();
 
       reviews.push({
-        reviewId:       String(rId),
-        displayName:    String(rDisplayName || "นักศึกษา มศว"),
-        faculty:        String(rFaculty || ""),
-        course_id:      String(rCourseId || ""),
-        course_code:    String(rCourseCode || ""),
-        name_th:        String(rNameTh || ""),
-        name_en:        String(rNameEn || ""),
-        courseId:       rCourseId && rCourseCode ? (rCourseId + " / " + rCourseCode) : String(rCourseId || rCourseCode || ""),
-        courseName:     String(rNameTh || ""),
-        credits:        Number(rCredits) || 4,
-        learningFormat: String(rFormat || "Onsite"),
-        classSchedule:  String(rSchedule || ""),
-        attendance:     String(rAttendance || "มีการเช็คชื่อ"),
+        reviewId:       rId,
+        displayName:    rDisplayName || "นักศึกษา มศว",
+        faculty:        rFaculty,
+        course_id:      rCourseId,
+        course_code:    rCourseCode,
+        name_th:        rNameTh,
+        name_en:        rNameEn,
+        courseId:       rCourseId && rCourseCode ? (rCourseId + " / " + rCourseCode) : (rCourseId || rCourseCode),
+        courseName:     rNameTh,
+        credits:        rCredits,
+        learningFormat: rFormat || "Onsite",
+        classSchedule:  rSchedule,
+        attendance:     rAttendance || "มีการเช็คชื่อ",
         ratings: {
           contentClarity:          rContent,
           workloadAppropriateness: rWorkload,
@@ -119,7 +126,7 @@ function doGet(e) {
           instructorKindness:      rInst,
           gradingEase:             rGrading
         },
-        writtenReview:  String(rWritten || ""),
+        writtenReview:  rWritten,
         createdAt:      createdAtStr
       });
     }
@@ -140,7 +147,7 @@ function doGet(e) {
   }
 }
 
-// ── POST: รับรีวิวใหม่ที่ส่งมาจากหน้าเว็บแล้วบันทึกลง Google Sheet ────────
+// ── POST: รับรีวิวใหม่จากหน้าเว็บแล้วบันทึกต่อท้าย Sheet ───────────────────
 function doPost(e) {
   try {
     var sheet = getTargetSheet();
@@ -169,31 +176,30 @@ function doPost(e) {
 
     var written = data.writtenReview || "";
 
-    // บันทึกต่อท้ายแถวใหม่ใน Sheet
     sheet.appendRow([
-      now,            // 1. วันที่/เวลา
+      now,            // 1. วันที่เวลา
       displayName,    // 2. ชื่อผู้รีวิว
       faculty,        // 3. คณะ
-      courseId,       // 4. รหัสวิชาไทย
-      courseCode,     // 5. รหัสวิชาอังกฤษ
-      nameTh,         // 6. ชื่อวิชาไทย
-      nameEn,         // 7. ชื่อวิชาอังกฤษ
+      courseId,       // 4. รหัสวิชา (ไทย)
+      courseCode,     // 5. รหัสวิชา (อังกฤษ)
+      nameTh,         // 6. ชื่อวิชา (ไทย)
+      nameEn,         // 7. ชื่อวิชา (อังกฤษ)
       credits,        // 8. หน่วยกิต
       format,         // 9. รูปแบบการเรียน
       schedule,       // 10. ตารางเรียน
-      attendance,     // 11. เช็คชื่อ
-      r1,             // 12. คะแนนความเข้าใจ
-      r2,             // 13. คะแนนภาระงาน
-      r3,             // 14. คะแนนข้อสอบ
-      r4,             // 15. คะแนนอาจารย์
-      r5,             // 16. คะแนนการตัดเกรด
-      written,        // 17. รีวิวเขียน
-      reviewId        // 18. รหัสอ้างอิงรีวิว
+      attendance,     // 11. การเช็คชื่อ
+      r1,             // 12. ความเข้าใจง่าย
+      r2,             // 13. ความเหมาะสมงาน
+      r3,             // 14. ความง่ายข้อสอบ
+      r4,             // 15. ความใจดีอาจารย์
+      r5,             // 16. ความง่ายการให้เกรด
+      written,        // 17. รีวิวจากผู้เรียน
+      reviewId        // 18. รหัสอ้างอิง
     ]);
 
     return ContentService.createTextOutput(JSON.stringify({
       status: "success",
-      message: "Review appended to sheet successfully!",
+      message: "Saved to Google Sheet!",
       reviewId: reviewId
     })).setMimeType(ContentService.MimeType.JSON);
 
@@ -202,6 +208,120 @@ function doPost(e) {
       status: "error",
       message: error.toString()
     })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// ── ฟังก์ชันสร้างหัวตารางและ 6 รีวิวตัวอย่างเริ่มต้นให้อัตโนมัติ ───────────
+function setupCleanSheet() {
+  var sheet = getTargetSheet();
+  sheet.clear();
+
+  var headers = [
+    "ประทับเวลา",
+    "ชื่อผู้รีวิว",
+    "คณะ",
+    "รหัสวิชา (ไทย)",
+    "รหัสวิชา (อังกฤษ)",
+    "ชื่อวิชา (ไทย)",
+    "ชื่อวิชา (อังกฤษ)",
+    "หน่วยกิต",
+    "รูปแบบการเรียน",
+    "ตารางเรียน",
+    "การเช็คชื่อ",
+    "ความเข้าใจง่าย (1-5)",
+    "ความเหมาะสมงาน (1-5)",
+    "ความง่ายข้อสอบ (1-5)",
+    "ความใจดีอาจารย์ (1-5)",
+    "ความง่ายการให้เกรด (1-5)",
+    "รีวิวจากผู้เรียน",
+    "รหัสอ้างอิง"
+  ];
+
+  sheet.appendRow(headers);
+  sheet.getRange(1, 1, 1, headers.length)
+    .setFontWeight("bold")
+    .setBackground("#F0F1F2")
+    .setHorizontalAlignment("center");
+  sheet.setFrozenRows(1);
+
+  var now = new Date();
+  var sampleRows = [
+    [
+      new Date(now.getTime() - 1 * 86400000),
+      "เด็กปี 2 สายชิล",
+      "Innovative Learning Center",
+      "สสน01", "ZIL01",
+      "การจัดการงานและการเงินส่วนบุคคลเพื่อเสริมความมั่นคงในชีวิต",
+      "Job and Personal Financial Management to Reinforce Life Stability",
+      4, "Onsite", "จันทร์ 09:00–12:00", "มีการเช็คชื่อ",
+      5, 5, 4, 5, 5,
+      "วิชานี้ดีและมีประโยชน์มากครับ ได้เรียนรู้การวางแผนการเงินส่วนบุคคล การลงทุนขั้นพื้นฐาน และการบริหารเวลาในการทำงาน อาจารย์สอนสนุก ยกตัวอย่างจากชีวิตจริง งานกลุ่มไม่หนัก มีคะแนนในห้องช่วยเยอะมาก แนะนำเพื่อน ๆ ทุกคนครับ",
+      "rev_sample_01"
+    ],
+    [
+      new Date(now.getTime() - 3 * 86400000),
+      "สาวนิเทศฯ คนเก๋",
+      "College of Social Communication Innovation",
+      "สวน03", "ZCO03",
+      "พูดเด่นให้เป็นดาว",
+      "Speak Like A Super Star",
+      4, "Hybrid", "พุธ 13:00–16:00", "มีการเช็คชื่อ",
+      5, 4, 5, 5, 5,
+      "สนุกมากกกก ได้ฝึกทักษะการพูด การใช้ภาษากาย และความมั่นใจต่อหน้าสาธารณะอย่างแท้จริง บรรยากาศในห้องเรียนเป็นกันเอง อาจารย์ให้ฟีดแบ็กตรงจุดและคอยเชียร์ตลอด ไม่มีข้อสอบเขียนแบบเครียด เน้นปฏิบัติล้วน ๆ เกรด A แน่นอนถ้าตั้งใจ",
+      "rev_sample_02"
+    ],
+    [
+      new Date(now.getTime() - 7 * 86400000),
+      "เภสัชมือใหม่",
+      "Faculty of Pharmacy",
+      "สภส01", "ZPH01",
+      "กูรู กูรู้ ยาและสมุนไพร",
+      "Drug and Herb Guru",
+      4, "Online", "ศุกร์ 09:00–12:00", "ไม่มีการเช็คชื่อ",
+      5, 4, 4, 5, 4,
+      "เนื้อหาเน้นการนำยาและสมุนไพรไปใช้ในชีวิตประจำวันอย่างปลอดภัย เข้าใจง่ายแม้ไม่ได้เรียนสายวิทย์สุขภาพมา อาจารย์ใจดีมาก มีสไลด์ให้ทบทวนครบถ้วน ข้อสอบปรนัยตามเนื้อหาที่สอนเลยครับ",
+      "rev_sample_03"
+    ],
+    [
+      new Date(now.getTime() - 12 * 86400000),
+      "สายศิลป์หัวใจอาร์ต",
+      "Faculty of Fine Arts",
+      "สศก01", "ZFA01",
+      "ศิลปะสร้างสรรค์และนวัตกรรมเพื่องานศิลปะ",
+      "Creative Art and Innovation for Art",
+      6, "Onsite", "อังคาร 13:00–17:00", "มีการเช็คชื่อ",
+      5, 4, 5, 5, 5,
+      "ได้ปลดปล่อยความคิดสร้างสรรค์เต็มที่! ไม่จำเป็นต้องมีพื้นฐานวาดรูปมาก่อน อาจารย์เปิดกว้างรับทุกไอเดียและให้คำแนะนำดีมาก งานชิ้นสุดท้ายสนุกและได้ภูมิใจกับผลงานตัวเองค่ะ",
+      "rev_sample_04"
+    ],
+    [
+      new Date(now.getTime() - 16 * 86400000),
+      "วิศวะชอบโค้ด",
+      "Faculty of Engineering",
+      "สวศ08", "ZEG08",
+      "ก้าวแรกสู่การคิดเชิงคำนวณและโค้ดดิ้ง",
+      "First Step to Computational Thinking and Coding",
+      4, "Hybrid", "พฤหัสบดี 09:00–12:00", "ไม่แน่ใจ",
+      4, 4, 4, 4, 4,
+      "เหมาะมากสำหรับคนที่อยากเริ่มเขียนโปรแกรมโดยไม่มีพื้นฐานมาก่อน สอนตั้งแต่หลักคิดเชิงตรรกะไปจนถึงแบบฝึกหัดโค้ดดิ้งแบบง่าย ๆ มี TA คอยช่วยซัพพอร์ตตลอดเวลา",
+      "rev_sample_05"
+    ],
+    [
+      new Date(now.getTime() - 20 * 86400000),
+      "เด็กมนุษย์ขอเมาท์",
+      "Faculty of Humanities",
+      "สมน14", "ZHM14",
+      "ภาษาเกาหลีในชีวิตประจำวัน",
+      "Korean in Daily Life",
+      4, "Onsite", "อังคาร 09:00–12:00", "มีการเช็คชื่อ",
+      5, 5, 5, 5, 5,
+      "อาจารย์สอนน่ารักมากกก สำเนียงเป๊ะ เรียนสนุก ได้ฝึกอ่านฮันกึลและบทสนทนาที่ใช้บ่อยในซีรีส์และชีวิตประจำวัน ใครชอบเกาหลีห้ามพลาดเด็ดขาด ได้ A สบาย ๆ ถ้าเข้าเรียนสม่ำเสมอค่ะ",
+      "rev_sample_06"
+    ]
+  ];
+
+  for (var k = 0; k < sampleRows.length; k++) {
+    sheet.appendRow(sampleRows[k]);
   }
 }
 

@@ -11,7 +11,7 @@
  */
 
 // ⬇️ วาง Web App URL ที่ได้จาก Google Apps Script ที่นี่ (ถ้ายังไม่ใส่ จะทำงานผ่าน localStorage ตามปกติ)
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAtvAQLCTd7OD90oWpF6QTHKF43Qfqg72-v_FzI-IgeODO73hOCloVw5v2-pcEOSDM/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyZ2RdY7ShRLpefBHDDh7tDf4gOa4AIamyhdNGgHj7gDGicC9jtl54ODf80E8eRydV30g/exec";
 
 const STORAGE_KEY = "swu_reviews";
 
