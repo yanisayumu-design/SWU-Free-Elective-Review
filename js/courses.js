@@ -625,62 +625,859 @@ const COURSE_DATABASE = {
       "faculty_name": "College of Creative Industry",
       "courses": [
         {
-          "course_id": "สศษ01",
-          "course_code": "ZED01",
-          "name_th": "จิตวิทยาแห่งความสมดุลในชีวิต",
-          "name_en": "The Psychology of Life Balance"
+          "course_id": "สวอ01",
+          "course_code": "ZCI01",
+          "name_th": "เริ่มต้นธุรกิจแฟชั่นสำหรับมือใหม่",
+          "name_en": "Starting Fashion Business for Beginners"
         },
         {
-          "course_id": "สศษ01",
-          "course_code": "ZED01",
-          "name_th": "จิตวิทยาแห่งความสมดุลในชีวิต",
-          "name_en": "The Psychology of Life Balance"
+          "course_id": "สวอ02",
+          "course_code": "ZCI02",
+          "name_th": "การออกแบบเครื่องตกแต่งแฟชั่น",
+          "name_en": "Fashion Accessories Design"
+        },
+        {
+          "course_id": "สวอ03",
+          "course_code": "ZCI03",
+          "name_th": "การออกแบบและงานไม้สำหรับผลิตภัณฑ์แต่งบ้าน",
+          "name_en": "Designing and Wooding for Home Decore Product"
+        },
+        {
+          "course_id": "สวอ04",
+          "course_code": "ZCI04",
+          "name_th": "การทำธุรกิจอัญมณีและเครื่องประดับสำหรับผู้ประกอบการใหม่ในยุค",
+          "name_en": "Jewelry Business for Entrepreneurs in Digital Era"
+        },
+        {
+          "course_id": "สวอ05",
+          "course_code": "ZCI05",
+          "name_th": "เทคนิคอย่างง่ายการดูเพชรดูพลอย",
+          "name_en": "Easy Techniques to Identify Gemstone and Diamond"
         }
       ]
     },
     {
       "faculty_name": "Behavioral Science Research Institute",
-      "courses": []
+      "courses": [
+        {
+          "course_id": "สวจ01",
+          "course_code": "ZBR01",
+          "name_th": "จิตวิทยาไซเบอร์ และการประยุกต์ใช้ปัญญาประดิษฐ์ในการเรียนและการทำงาน",
+          "name_en": "Cyberpsychology and Artificial Intelligence Applications for Learning and Work"
+        },
+        {
+          "course_id": "สวจ02",
+          "course_code": "ZBR02",
+          "name_th": "ความรอบรู้ด้านสุขภาพจิต แนวทางการดูแลและการจัดการสุขภาพจิตตนเอง",
+          "name_en": "Mental Health Literacy, Self-Help Approach and Management"
+        },
+        {
+          "course_id": "สวจ03",
+          "course_code": "ZBR03",
+          "name_th": "จิตวิทยาการทำงาน และความสามารถในการมีงานทำ",
+          "name_en": "Work Psychology and Employability"
+        }
+      ]
     },
     {
       "faculty_name": "Faculty of Medicine",
-      "courses": []
+      "courses": [
+        {
+          "course_id": "สพท01",
+          "course_code": "ZMD01",
+          "name_th": "สุขภาพดี ชีวีสดใส",
+          "name_en": "Good health and Well being"
+        },
+        {
+          "course_id": "สพท02",
+          "course_code": "ZMD02",
+          "name_th": "โรคฮิตติดชาร์ต",
+          "name_en": "Top-chart disease"
+        },
+        {
+          "course_id": "สพท03",
+          "course_code": "ZMD03",
+          "name_th": "การสร้างเสริมสุขภาพเด็ก",
+          "name_en": "Health Promotion in Children"
+        },
+        {
+          "course_id": "สพท04",
+          "course_code": "ZMD04",
+          "name_th": "การสร้างเสริมสุขภาพผู้สูงอายุ",
+          "name_en": "Health Promotion in Elderly"
+        }
+      ]
     },
     {
       "faculty_name": "Faculty of Physical Therapy",
-      "courses": []
+      "courses": [
+        {
+          "course_id": "สกภ01",
+          "course_code": "ZPC01",
+          "name_th": "การสื่อสารสุขภาพเพื่อสร้างเสริมสุขภาวะ",
+          "name_en": "Health Communication for Promote the Well-Being"
+        },
+        {
+          "course_id": "สกภ02",
+          "course_code": "ZPC02",
+          "name_th": "สูงวัยแบบพฤฒิพลังในยุคดิจิทัล",
+          "name_en": "Active Aging in the Digital Era"
+        },
+        {
+          "course_id": "สกภ03",
+          "course_code": "ZPC03",
+          "name_th": "การจัดการอาการปวดจากออฟฟิศซินโดรมและการทรงท่าที่ผิด",
+          "name_en": "Management of Pain from Office Syndrome and Postural Syndrome"
+        },
+        {
+          "course_id": "สกภ04",
+          "course_code": "ZPC04",
+          "name_th": "คนรุ่นใหม่ใส่ใจผู้สูงวัยกลุ่มเปราะบาง",
+          "name_en": "The New Generation Cares about the Fragile Elderly"
+        },
+        {
+          "course_id": "สกภ05",
+          "course_code": "ZPC05",
+          "name_th": "จักรวาลฮีลใจ รู้จักฉัน รู้จักเธอ",
+          "name_en": "Mental Healing Verse : Insight Me & You"
+        }
+      ]
     },
     {
       "faculty_name": "Faculty of Business Administration for Society",
-      "courses": []
+      "courses": [
+        {
+          "course_id": "สบธ01",
+          "course_code": "ZBS01",
+          "name_th": "ถอดรหัส Start-up",
+          "name_en": "Decoding Start-up"
+        },
+        {
+          "course_id": "สบธ02",
+          "course_code": "ZBS02",
+          "name_th": "รู้กำไร รู้ขาดทุน ธุรกิจอยู่รอด",
+          "name_en": "Know the Profit, Know the Loss, The Business Survives"
+        },
+        {
+          "course_id": "สบธ03",
+          "course_code": "ZBS03",
+          "name_th": "ตรวจสุขภาพธุรกิจ",
+          "name_en": "Business Health Check"
+        },
+        {
+          "course_id": "สบธ04",
+          "course_code": "ZBS04",
+          "name_th": "ขายยังไงไม่ให้เจ๊ง",
+          "name_en": "How to Win in Sales"
+        },
+        {
+          "course_id": "สบธ05",
+          "course_code": "ZBS05",
+          "name_th": "เครื่องจักรการตลาด",
+          "name_en": "Marketing Machine"
+        },
+        {
+          "course_id": "สบธ06",
+          "course_code": "ZBS06",
+          "name_th": "ปั้นพอร์ตให้สวยด้วยการลงทุน",
+          "name_en": "Investing Guide to Achieve an Efficient Portfolio"
+        },
+        {
+          "course_id": "สบธ07",
+          "course_code": "ZBS07",
+          "name_th": "การบริการที่เป็นเลิศสำหรับกลุ่มลูกค้าระดับบน",
+          "name_en": "High-end Service Excellence"
+        },
+        {
+          "course_id": "สบธ08",
+          "course_code": "ZBS08",
+          "name_th": "ธุรกิจไทยก้าวไกลระดับโลก",
+          "name_en": "Stepping Thai Businesses Toward Globalization"
+        },
+        {
+          "course_id": "สบธ09",
+          "course_code": "ZBS09",
+          "name_th": "ธุรกิจสร้างสุข",
+          "name_en": "Business for Happiness"
+        },
+        {
+          "course_id": "สบธ10",
+          "course_code": "ZBS10",
+          "name_th": "การสื่อสารภาษาจีนเพื่อการเอาตัวรอด",
+          "name_en": "Survival Chinese"
+        },
+        {
+          "course_id": "สบธ11",
+          "course_code": "ZBS11",
+          "name_th": "ภาษาจีนเพื่ออุตสาหกรรมการบริการ",
+          "name_en": "Chinese for Service Industry"
+        },
+        {
+          "course_id": "สบธ12",
+          "course_code": "ZBS12",
+          "name_th": "ภาษาญี่ปุ่นเพื่ออุตสาหกรรมการบริการ",
+          "name_en": "Japanese for Service Industry"
+        },
+        {
+          "course_id": "สบธ13",
+          "course_code": "ZBS13",
+          "name_th": "การริเริ่มธุรกิจในประเทศจีน",
+          "name_en": "Starting a Business in China"
+        },
+        {
+          "course_id": "สบธ14",
+          "course_code": "ZBS14",
+          "name_th": "การใช้เครื่องดื่มและอาหารปิดเกมธุรกิจ",
+          "name_en": "Mastering Business Closing through Food and Beverage"
+        },
+        {
+          "course_id": "สบธ15",
+          "course_code": "ZBS15",
+          "name_th": "ศิลปะแห่งการขายและการสร้างสรรค์งานอีเวนต์",
+          "name_en": "The Art of Selling & Creating Events"
+        },
+        {
+          "course_id": "สบธ16",
+          "course_code": "ZBS16",
+          "name_th": "Business 101: ธุรกิจไม่ยาก ถ้าจัดการเป็น",
+          "name_en": "Business 101: Business for All"
+        },
+        {
+          "course_id": "สบธ17",
+          "course_code": "ZBS17",
+          "name_th": "ศิลปะแห่งความประทับใจแรกและการจัดการลูกค้าอย่างยั่งยืน",
+          "name_en": "The Art of First Impressions and Sustainable Customer Management"
+        },
+        {
+          "course_id": "สบธ18",
+          "course_code": "ZBS18",
+          "name_th": "เงินคือพระเจ้า",
+          "name_en": "Money is God"
+        }
+      ]
     },
     {
       "faculty_name": "Faculty of Environmental Culture and Ecotourism",
-      "courses": []
+      "courses": [
+        {
+          "course_id": "สวธ01",
+          "course_code": "ZEE01",
+          "name_th": "การจัดการสิ่งแวดล้อมเพื่อการดำรงชีวิตวิถีใหม่",
+          "name_en": "Environmental Management for New Normal Lifestyle"
+        },
+        {
+          "course_id": "สวธ02",
+          "course_code": "ZEE02",
+          "name_th": "การท่องเที่ยวเชิงอาสาสมัครเพื่อสร้างเสริมประสบการณ์",
+          "name_en": "Volunteer Tourism for Enhancing Experiences"
+        },
+        {
+          "course_id": "สวธ03",
+          "course_code": "ZEE03",
+          "name_th": "เรื่องเล่าของอาหารผ่านการท่องเที่ยว",
+          "name_en": "Gastronomy Tourism Storytelling"
+        },
+        {
+          "course_id": "สวธ04",
+          "course_code": "ZEE04",
+          "name_th": "การท่องเที่ยวเชิงผจญภัย",
+          "name_en": "Adventure Tourism"
+        },
+        {
+          "course_id": "สวธ05",
+          "course_code": "ZEE05",
+          "name_th": "การท่องเที่ยวคาร์บอนต่ำเพื่อความยั่งยืน",
+          "name_en": "Low-Carbon Tourism for Sustainability"
+        },
+        {
+          "course_id": "สวธ06",
+          "course_code": "ZEE06",
+          "name_th": "พรรณไม้เพื่อชีวิต",
+          "name_en": "Plants for Life"
+        },
+        {
+          "course_id": "สวธ07",
+          "course_code": "ZEE07",
+          "name_th": "รักษ์ธรรมชาติและท้องทะเล",
+          "name_en": "Nature & Ocean Conservation"
+        }
+      ]
     },
     {
       "faculty_name": "Faculty of Nursing",
-      "courses": []
+      "courses": [
+        {
+          "course_id": "สพย01",
+          "course_code": "ZNS01",
+          "name_th": "ความสุขของผู้สูงอายุในศตวรรษที่ 21",
+          "name_en": "The Happiness of the Elderly in the 21st Century"
+        },
+        {
+          "course_id": "สพย02",
+          "course_code": "ZNS02",
+          "name_th": "ธุรกิจการดูแลผู้สูงอายุ",
+          "name_en": "Senior Caring Business"
+        },
+        {
+          "course_id": "สพย03",
+          "course_code": "ZNS03",
+          "name_th": "ปลุกพลังฮีโร่",
+          "name_en": "The Hero Awakening"
+        },
+        {
+          "course_id": "สปพ04",
+          "course_code": "ZNS04",
+          "name_th": "เติมสุขผู้สูงวัย",
+          "name_en": "Happiness Enrichment for the Elderly"
+        }
+      ]
     },
     {
       "faculty_name": "Faculty of Physical Education, Sports and Health",
-      "courses": []
+      "courses": [
+        {
+          "course_id": "สพล01",
+          "course_code": "ZPE01",
+          "name_th": "ชีวิตและครอบครัวสุขสันต์",
+          "name_en": "Happy Life and Happy Family"
+        },
+        {
+          "course_id": "สพล02",
+          "course_code": "ZPE02",
+          "name_th": "การจัดการสุขภาพผู้สูงอายุเชิงบูรณาการ",
+          "name_en": "Integrative Elderly Health Management"
+        },
+        {
+          "course_id": "สพล03",
+          "course_code": "ZPE03",
+          "name_th": "การจัดการเรียนรู้สุขศึกษาเพื่อชีวิต",
+          "name_en": "Health Education Learning Management For Life"
+        },
+        {
+          "course_id": "สพล04",
+          "course_code": "ZPE04",
+          "name_th": "การสื่อสารและสร้างสรรค์สื่อสุขภาพ",
+          "name_en": "Health Communication And Health Media Creation"
+        },
+        {
+          "course_id": "สพล05",
+          "course_code": "ZPE05",
+          "name_th": "ทักษะชีวิตเพื่อสุขภาวะ",
+          "name_en": "Life Skill For Wellness"
+        },
+        {
+          "course_id": "สพล06",
+          "course_code": "ZPE06",
+          "name_th": "สุขพลิกผันกับนันทนาการ",
+          "name_en": "Increased Happiness Through Recreation"
+        },
+        {
+          "course_id": "สพล07",
+          "course_code": "ZPE07",
+          "name_th": "การจัดการปัญหาสุขภาพทางสาธารณสุข",
+          "name_en": "Public Health Problem Management"
+        },
+        {
+          "course_id": "สพล08",
+          "course_code": "ZPE08",
+          "name_th": "การออกแบบโปรแกรมการออกกำลังกายเพื่อสุขภาพด้วยตนเอง",
+          "name_en": "Self-Exercise Program Design For Health"
+        },
+        {
+          "course_id": "สพล09",
+          "course_code": "ZPE09",
+          "name_th": "กีฬาแห่งความสุข",
+          "name_en": "Happiness Sports"
+        }
+      ]
     },
     {
       "faculty_name": "Bodhivijjalaya College",
-      "courses": []
+      "courses": [
+        {
+          "course_id": "สพธ01",
+          "course_code": "ZBC01",
+          "name_th": "แนวพระราชดำริกับการพัฒนาคุณภาพชีวิต",
+          "name_en": "His Majesty's Initiatives and The Quality of Life Development"
+        },
+        {
+          "course_id": "สพธ02",
+          "course_code": "ZBC02",
+          "name_th": "ชุมชนและโลกที่ยั่งยืน",
+          "name_en": "Sustainable Community and World"
+        },
+        {
+          "course_id": "สพธ03",
+          "course_code": "ZBC03",
+          "name_th": "ชาติพันธุ์และสังคมพหุวัฒนธรรม",
+          "name_en": "Ethnic and Multicultural Society"
+        },
+        {
+          "course_id": "สพธ04",
+          "course_code": "ZBC04",
+          "name_th": "ป่าเศรษฐกิจ",
+          "name_en": "Economic Forest"
+        },
+        {
+          "course_id": "สพธ05",
+          "course_code": "ZBC05",
+          "name_th": "เกษตรสมัยใหม่",
+          "name_en": "Modern Agriculture"
+        },
+        {
+          "course_id": "สพธ06",
+          "course_code": "ZBC06",
+          "name_th": "ภูมิสารสนเทศเพื่อการพัฒนาชุมชน",
+          "name_en": "Geo-Informatics for Community Development"
+        },
+        {
+          "course_id": "สพธ07",
+          "course_code": "ZBC07",
+          "name_th": "สื่อและนวัตกรรมการสื่อสารเพื่อพัฒนาชุมชน",
+          "name_en": "Media and Communication Innovations for Community Development"
+        },
+        {
+          "course_id": "สพธ08",
+          "course_code": "ZBC08",
+          "name_th": "ของป่า",
+          "name_en": "Wild products"
+        },
+        {
+          "course_id": "สพธ09",
+          "course_code": "ZBC09",
+          "name_th": "เครื่องรางของขลัง",
+          "name_en": "Amulets"
+        },
+        {
+          "course_id": "สพธ10",
+          "course_code": "ZBC10",
+          "name_th": "ปลูกความสุขจากธรรมชาติและเกษตรบำบัด",
+          "name_en": "Planting Happiness from Nature and Agro-Therapy"
+        },
+        {
+          "course_id": "สพธ11",
+          "course_code": "ZBC11",
+          "name_th": "ปลูกดอกไม้ให้ใจฟู",
+          "name_en": "Grow flowers, swell your heart"
+        }
+      ]
     },
     {
       "faculty_name": "Faculty of Economics",
-      "courses": []
+      "courses": [
+        {
+          "course_id": "สศศ01",
+          "course_code": "ZEC01",
+          "name_th": "รู้รอบเศรษฐกิจ",
+          "name_en": "Understanding The Economy"
+        },
+        {
+          "course_id": "สศศ02",
+          "course_code": "ZEC02",
+          "name_th": "นักลงทุนรุ่นเยาว์",
+          "name_en": "Young Investor"
+        },
+        {
+          "course_id": "สศศ03",
+          "course_code": "ZEC03",
+          "name_th": "นวัตกรรมเทคโนโลยีและผู้ประกอบการรายย่อย",
+          "name_en": "Smart SMEs with Technology"
+        }
+      ]
     },
     {
       "faculty_name": "Faculty of Social Sciences",
-      "courses": []
+      "courses": [
+        {
+          "course_id": "สสค01",
+          "course_code": "ZSS01",
+          "name_th": "นโยบายและการจัดการสาธารณะในยุคดิจิทัล",
+          "name_en": "Policy and Public Management in The Digital Age"
+        },
+        {
+          "course_id": "สสค02",
+          "course_code": "ZSS02",
+          "name_th": "ความมั่นคงผ่านวรรณกรรมและวัฒนธรรมสมัยนิยม",
+          "name_en": "Security Through Literatures And Popular Culture"
+        },
+        {
+          "course_id": "สสค03",
+          "course_code": "ZSS03",
+          "name_th": "รัฐศาสตร์ในชีวิตประจำวัน",
+          "name_en": "Political Science In Everyday Life"
+        },
+        {
+          "course_id": "สสค04",
+          "course_code": "ZSS04",
+          "name_th": "กฎหมายกับสังคม",
+          "name_en": "Law And Society"
+        },
+        {
+          "course_id": "สสค05",
+          "course_code": "ZSS05",
+          "name_th": "ผู้คนและสังคมในศตวรรษที่ 21",
+          "name_en": "Human And Society In The 21st Century"
+        },
+        {
+          "course_id": "สสค06",
+          "course_code": "ZSS06",
+          "name_th": "ประวัติศาสตร์สื่อสร้างสรรค์สมัยนิยม",
+          "name_en": "History Of Popular Creative Media"
+        },
+        {
+          "course_id": "สสค07",
+          "course_code": "ZSS07",
+          "name_th": "เรากับสิ่งแวดล้อม",
+          "name_en": "Environment and I"
+        },
+        {
+          "course_id": "สสค08",
+          "course_code": "ZSS08",
+          "name_th": "ภูมิศาสตร์ในชีวิตประจำวัน",
+          "name_en": "Geography in Everyday Life"
+        },
+        {
+          "course_id": "สสค09",
+          "course_code": "ZSS09",
+          "name_th": "สังคมศาสตร์การศึกษา",
+          "name_en": "Social Sciences Education"
+        },
+        {
+          "course_id": "สสค10",
+          "course_code": "ZSS10",
+          "name_th": "สังคม ภาพยนตร์ และตนเอง",
+          "name_en": "Society, Films and Self"
+        }
+      ]
     },
     {
       "faculty_name": "Faculty of Science",
-      "courses": []
+      "courses": [
+        {
+          "course_id": "สวท01",
+          "course_code": "ZSC01",
+          "name_th": "สร้างสรรค์เครื่องดื่มแนวใหม่โดยใช้จุลินทรีย์",
+          "name_en": "Create New Beverage by Microorganisms"
+        },
+        {
+          "course_id": "สวท02",
+          "course_code": "ZSC02",
+          "name_th": "จุลินทรีย์ในชีวิตประจำวัน: กิน-อยู่ถูกสุขลักษณะ",
+          "name_en": "Microbes in Daily Life: A Guide to Hygiene"
+        },
+        {
+          "course_id": "สวท03",
+          "course_code": "ZSC03",
+          "name_th": "การโปรแกรมสำหรับบุคคลทั่วไป",
+          "name_en": "Programming for Everybody"
+        },
+        {
+          "course_id": "สวท04",
+          "course_code": "ZSC04",
+          "name_th": "สีสันของสิ่งทอ",
+          "name_en": "Color of Textiles"
+        },
+        {
+          "course_id": "สวท05",
+          "course_code": "ZSC05",
+          "name_th": "วรรณกรรมและการแสดงวิทยาศาสตร์",
+          "name_en": "Literature and Science Show"
+        },
+        {
+          "course_id": "สวท06",
+          "course_code": "ZSC06",
+          "name_th": "เคมียา",
+          "name_en": "Medicinal Chemistry"
+        },
+        {
+          "course_id": "สวท07",
+          "course_code": "ZSC07",
+          "name_th": "มือใหม่เข้าครัว",
+          "name_en": "Amateur in Kitchen"
+        },
+        {
+          "course_id": "สวท08",
+          "course_code": "ZSC08",
+          "name_th": "เคมีและความบันเทิง",
+          "name_en": "Chemistry and Entertainment"
+        },
+        {
+          "course_id": "สวท09",
+          "course_code": "ZSC09",
+          "name_th": "การเดินทางของข้อมูล: จากข้อมูลสู่ปัญญา",
+          "name_en": "The Data Journey: From Raw Data to Insights"
+        },
+        {
+          "course_id": "สวท10",
+          "course_code": "ZSC10",
+          "name_th": "คณิตศาสตร์เพื่อการตัดสินใจ",
+          "name_en": "MATHEMATICS FOR DECISION MAKING"
+        },
+        {
+          "course_id": "สวท11",
+          "course_code": "ZSC11",
+          "name_th": "เคมีดีมีสุข",
+          "name_en": "Chemistry for Wellbeing"
+        },
+        {
+          "course_id": "สวท12",
+          "course_code": "ZSC12",
+          "name_th": "วัสดุรักษ์โลก",
+          "name_en": "Green Materials"
+        },
+        {
+          "course_id": "สวท13",
+          "course_code": "ZSC13",
+          "name_th": "จากขยะสู่วัสดุชีวฐาน",
+          "name_en": "From Waste to Bio-based Materials"
+        },
+        {
+          "course_id": "สวท14",
+          "course_code": "ZSC14",
+          "name_th": "โลหะในชีวิตประจำวัน",
+          "name_en": "Metals in Everyday Life"
+        },
+        {
+          "course_id": "สวท15",
+          "course_code": "ZSC15",
+          "name_th": "ประเภทวัสดุและการใช้งาน",
+          "name_en": "Types of Materials and Their Uses"
+        },
+        {
+          "course_id": "สวท16",
+          "course_code": "ZSC16",
+          "name_th": "วัสดุนาโนรอบตัวกับแนวโน้มเทคโนโลยีนาโนในอนาคต",
+          "name_en": "Surrounding Nanomaterials and Prospective Nanotechnology"
+        },
+        {
+          "course_id": "สวท17",
+          "course_code": "ZSC17",
+          "name_th": "ผลิตภัณฑ์เซรามิก",
+          "name_en": "Ceramic Products"
+        },
+        {
+          "course_id": "สวท18",
+          "course_code": "ZSC18",
+          "name_th": "การชุบโลหะด้วยไฟฟ้า",
+          "name_en": "Electroplating of Metals"
+        },
+        {
+          "course_id": "สวท19",
+          "course_code": "ZSC19",
+          "name_th": "ดวงดาวกับการท่องเที่ยว",
+          "name_en": "Stars and Tourism"
+        },
+        {
+          "course_id": "สวท20",
+          "course_code": "ZSC20",
+          "name_th": "คณิตศาสตร์สำหรับทักษะชีวิต",
+          "name_en": "Mathematics for Life Skills"
+        },
+        {
+          "course_id": "สวท21",
+          "course_code": "ZSC21",
+          "name_th": "สนุกคณิต ผ่านการสร้างสื่อการเรียนรู้และเกม",
+          "name_en": "Enjoy Mathematics Through Constructing Learning Materials and Games"
+        },
+        {
+          "course_id": "สวท22",
+          "course_code": "ZSC22",
+          "name_th": "สถิติและการวิเคราะห์ข้อมูลทางธุรกิจด้วย MS Excel",
+          "name_en": "Statistics and Business Data Analysis with MS Excel"
+        },
+        {
+          "course_id": "สวท23",
+          "course_code": "ZSC23",
+          "name_th": "กลยุทธ์ของเกมและวิธีการตัดสินใจอย่างนักสถิติ",
+          "name_en": "Game strategies and Decision Making as Statisticians"
+        },
+        {
+          "course_id": "สวท24",
+          "course_code": "ZSC24",
+          "name_th": "เทคนิคทางวิทยาศาสตร์ในการถ่ายภาพ",
+          "name_en": "Scientific Technique in Photography"
+        },
+        {
+          "course_id": "สวท25",
+          "course_code": "ZSC25",
+          "name_th": "วัสดุเพื่อการกีฬา และเพื่อสัตว์เลี้ยง",
+          "name_en": "Materials for Sports and Pets"
+        },
+        {
+          "course_id": "สวท26",
+          "course_code": "ZSC26",
+          "name_th": "วิทยาศาสตร์ในบันเทิงคดี",
+          "name_en": "Science in Fiction"
+        },
+        {
+          "course_id": "สวท27",
+          "course_code": "ZSC27",
+          "name_th": "อยู่ดีมีสุขกับเทคโนโลยีชีวภาพ",
+          "name_en": "Well-Being with Biotechnology"
+        },
+        {
+          "course_id": "สวท28",
+          "course_code": "ZSC28",
+          "name_th": "ศาสตร์และศิลป์แห่งพืชพรรณในชีวิตดิจิทัล",
+          "name_en": "Science and Art of Plants in Digital Life"
+        },
+        {
+          "course_id": "สวท29",
+          "course_code": "ZSC29",
+          "name_th": "พฤกษาในขวดแก้วและในตลาดออนไลน์",
+          "name_en": "Plants in Glass Bottles and Online Markets"
+        },
+        {
+          "course_id": "สวท30",
+          "course_code": "ZSC30",
+          "name_th": "ดีเอ็นเอความลับแห่งชีวิต",
+          "name_en": "DNA: The Secret of Life"
+        },
+        {
+          "course_id": "สวท31",
+          "course_code": "ZSC31",
+          "name_th": "สัตว์ในเมืองและการดูนก",
+          "name_en": "Urban Animals and Bird Watching"
+        },
+        {
+          "course_id": "สวท32",
+          "course_code": "ZSC32",
+          "name_th": "ชีววิทยาหลังบ้านและการอนุรักษ์",
+          "name_en": "Backyard Biology and Conservation"
+        },
+        {
+          "course_id": "สวท33",
+          "course_code": "ZSC33",
+          "name_th": "ฟิสิกส์สมัยใหม่ ในภาพยนตร์และสื่อ กับความเชื่อ",
+          "name_en": "New Physics in Movies and Media, Versus Belief"
+        },
+        {
+          "course_id": "สวท34",
+          "course_code": "ZSC34",
+          "name_th": "การสื่อสารทางวิทยาศาสตร์อย่างมีประสิทธิภาพ",
+          "name_en": "Effective Science Communication"
+        },
+        {
+          "course_id": "สวท35",
+          "course_code": "ZSC35",
+          "name_th": "ศาสตร์พระราชาเพื่อชีวิตที่ยั่งยืน",
+          "name_en": "The King's Wisdom for Sustainable Life"
+        },
+        {
+          "course_id": "สวท36",
+          "course_code": "ZSC36",
+          "name_th": "Microsoft Excel สำหรับมืออาชีพ",
+          "name_en": "Microsoft Excel for Professionals"
+        },
+        {
+          "course_id": "สวท37",
+          "course_code": "ZSC37",
+          "name_th": "ครบเครื่องเรื่องวัสดุ",
+          "name_en": "All About Materials"
+        },
+        {
+          "course_id": "สวท38",
+          "course_code": "ZSC38",
+          "name_th": "ศิลปะการตกแต่งอาหารและเครื่องดื่ม",
+          "name_en": "Decoration Art for Food and Beverage"
+        },
+        {
+          "course_id": "สวท39",
+          "course_code": "ZSC39",
+          "name_th": "ควอนตัมเปลี่ยนโลก",
+          "name_en": "A quantum-changing world"
+        },
+        {
+          "course_id": "สวท40",
+          "course_code": "ZSC40",
+          "name_th": "เรื่องเล่าของสิ่งทอ",
+          "name_en": "Textile talks"
+        },
+        {
+          "course_id": "สวท41",
+          "course_code": "ZSC41",
+          "name_th": "ภาพยนตร์และนวนิยายไซ-ไฟ วิทยาศาสตร์ กับ ความเชื่อ",
+          "name_en": "Sci-Fi Movies and Novels, Science versus Belief"
+        },
+        {
+          "course_id": "สวท42",
+          "course_code": "ZSC42",
+          "name_th": "ดาราโหราศาสตร์สังเขป",
+          "name_en": "Astronomy-astrology introduction"
+        },
+        {
+          "course_id": "สวท43",
+          "course_code": "ZSC43",
+          "name_th": "คณิตศาสตร์โอลิมปิกเบื้องต้น",
+          "name_en": "Introduction to Olympiad Mathematics"
+        },
+        {
+          "course_id": "สวท44",
+          "course_code": "ZSC44",
+          "name_th": "ความบันเทิงวิทยาศาสตร์ที่บ้าน",
+          "name_en": "SCIENCE ENTERTAINMENT AT HOME"
+        },
+        {
+          "course_id": "สวท45",
+          "course_code": "ZSC45",
+          "name_th": "คณิตศาสตร์เพื่อการตัดสินใจทางธุรกิจและการเงิน",
+          "name_en": "Mathematics for Decision Making in Business and Finance"
+        },
+        {
+          "course_id": "สวท46",
+          "course_code": "ZSC46",
+          "name_th": "ผลิตภัณฑ์เซรามิก",
+          "name_en": "Ceramic Products"
+        },
+        {
+          "course_id": "สวท47",
+          "course_code": "ZSC47",
+          "name_th": "วัสดุพิศวง",
+          "name_en": "Materials Magic"
+        },
+        {
+          "course_id": "สวท48",
+          "course_code": "ZSC48",
+          "name_th": "จุลินทรีย์กับชีวิตประจำวัน: กิน-อยู่ถูกสุขลักษณะ",
+          "name_en": "Microbes in daily life: A guide to hygiene"
+        },
+        {
+          "course_id": "สวท49",
+          "course_code": "ZSC49",
+          "name_th": "เกมตัวตึง",
+          "name_en": "Power of Game"
+        },
+        {
+          "course_id": "สวท50",
+          "course_code": "ZSC50",
+          "name_th": "แกะรอยวัสดุจากทั่วโลก",
+          "name_en": "Exploring materials around the world"
+        },
+        {
+          "course_id": "สวท51",
+          "course_code": "ZSC51",
+          "name_th": "รู้เรื่องเงิน...ก่อนเริ่มงาน",
+          "name_en": "Know about Money...Before You Work"
+        },
+        {
+          "course_id": "สวท52",
+          "course_code": "ZSC52",
+          "name_th": "ปัญญาประดิษฐ์สำหรับทุกคน: จากแนวคิดสู่การประยุกต์ใช้",
+          "name_en": "Artificial Intelligence for Everyone: From Concepts to Practical Applications"
+        },
+        {
+          "course_id": "สวท53",
+          "course_code": "ZSC53",
+          "name_th": "วิทยาศาสตร์ของการใช้ชีวิต: ออกแบบโลก อย่างยั่งยืนและชาญฉลาด",
+          "name_en": "Science of Living: Designing a Sustainable and Intelligent World"
+        },
+        {
+          "course_id": "สวท54",
+          "course_code": "ZSC54",
+          "name_th": "วิถีชีวิตที่ยั่งยืนและผลิตภัณฑ์สร้างสรรค์ที่เป็นมิตรต่อสิ่งแวดล้อม",
+          "name_en": "Sustainable Living and Creative E-co Products"
+        }
+      ]
     },
     {
       "faculty_name": "Faculty of Humanities",
@@ -860,7 +1657,7 @@ function getAllFaculties() {
  * @returns {string}
  */
 function getFacultyName(facultyNameOrId) {
-  if (!facultyNameOrId) return "";
+  if (!facultyNameOrId) return ;
   const found = COURSE_DATABASE.faculties.find(
     f => f.faculty_name.toLowerCase() === String(facultyNameOrId).toLowerCase()
   );
@@ -912,8 +1709,8 @@ function getCourseById(identifier) {
       if (
         c.course_id.toLowerCase() === idStr ||
         c.course_code.toLowerCase() === idStr ||
-        `${c.course_id}_${c.course_code}`.toLowerCase() === idStr ||
-        `${c.course_id}/${c.course_code}`.toLowerCase() === idStr
+        (c.course_id + "_" + c.course_code).toLowerCase() === idStr ||
+        (c.course_id + "/" + c.course_code).toLowerCase() === idStr
       ) {
         return {
           ...c,

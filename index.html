@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Review SWU Free Elective — หน้าหลัก</title>
+  <title>SWU Free Elective Review — หน้าหลัก</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://googleapis.com" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
 </head>
 <body>
@@ -16,20 +19,22 @@
     <div class="navbar__inner">
       <a href="index.html" class="navbar__logo" aria-label="หน้าหลัก">
         <div class="navbar__logo-icon">🎓</div>
-        <span>Review SWU Free Elective</span>
+        <span>SWU Free Elective Review</span>
       </a>
       <div class="navbar__nav">
-        <a href="index.html"  class="nav-link nav-link--active" aria-current="page">หน้าหลัก</a>
-        <a href="review.html" class="nav-link nav-link--cta">✍️ รีวิว</a>
+        <a href="index.html"  class="nav-link nav-link--active" aria-current="page">Home</a>
+        <a href="review.html" class="nav-link nav-link--cta">Review</a>
       </div>
     </div>
   </nav>
 
   <main>
     <!-- ══════════════════════════════════════════════════════
-         HERO SECTION (NO GRADIENTS)
+         HERO SECTION
     ══════════════════════════════════════════════════════ -->
     <section class="hero" aria-label="แบนเนอร์หลัก">
+      <div class="hero__bg-pattern"></div>
+      <div class="hero__bg"></div>
       <div class="hero__content">
         <div class="hero__tag">Srinakharinwirot University</div>
         <h1 class="hero__title">
@@ -51,11 +56,11 @@
           </div>
           <div class="hero__stat">
             <span class="hero__stat-num" id="statCourses">—</span>
-            <span class="hero__stat-label">รายวิชาในระบบ</span>
+            <span class="hero__stat-label">รายวิชา</span>
           </div>
           <div class="hero__stat">
             <span class="hero__stat-num" id="statFaculties">—</span>
-            <span class="hero__stat-label">คณะ/ส่วนงาน</span>
+            <span class="hero__stat-label">คณะ</span>
           </div>
         </div>
       </div>
@@ -73,7 +78,7 @@
             <input
               type="search"
               id="searchInput"
-              placeholder="พิมพ์ชื่อวิชา รหัสวิชา (ไทย/อังกฤษ) หรือคำค้นหา..."
+              placeholder="พิมพ์ชื่อวิชา รหัสวิชา หรือคำค้นหา..."
               autocomplete="off"
               aria-label="ค้นหาวิชา"
             />
@@ -117,5 +122,17 @@
   <script src="js/courses.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/home.js"></script>
+
+  <!-- Update hero stats after scripts load -->
+  <script>
+    (function updateStats() {
+      const reviews   = getAllReviews();
+      const courses   = new Set(reviews.map(r => r.courseId));
+      const faculties = new Set(reviews.map(r => r.faculty));
+      document.getElementById("statReviews").textContent   = reviews.length;
+      document.getElementById("statCourses").textContent   = courses.size;
+      document.getElementById("statFaculties").textContent = faculties.size;
+    })();
+  </script>
 </body>
 </html>
