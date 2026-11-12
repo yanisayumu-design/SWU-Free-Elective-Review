@@ -164,13 +164,13 @@ function searchReviews(query, facultyFilter) {
     // Search query condition
     if (!q) return true;
 
-    const courseId   = (resolved.course_id || r.course_id || "").toLowerCase();
+    const courseId = (resolved.course_id || r.course_id || "").toLowerCase();
     const courseCode = (resolved.course_code || r.course_code || "").toLowerCase();
-    const nameTh     = (resolved.name_th || r.name_th || r.courseName || "").toLowerCase();
-    const nameEn     = (resolved.name_en || r.name_en || "").toLowerCase();
+    const nameTh = (resolved.name_th || r.name_th || r.courseName || "").toLowerCase();
+    const nameEn = (resolved.name_en || r.name_en || "").toLowerCase();
     const legacyCode = (r.courseId || "").toLowerCase();
-    const written    = (r.writtenReview || "").toLowerCase();
-    const author     = (r.displayName || "").toLowerCase();
+    const written = (r.writtenReview || "").toLowerCase();
+    const author = (r.displayName || "").toLowerCase();
 
     return (
       courseId.includes(q) ||
