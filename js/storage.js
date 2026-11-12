@@ -110,8 +110,9 @@ function searchReviews(query, facultyFilter) {
 
   return reviews.filter(r => {
     // Faculty filter condition
-    const facultyName = (r.faculty || "").toLowerCase();
-    const matchesFaculty = !fid || facultyName === fid;
+    const facultyNameTh = (typeof getFacultyName === "function" ? getFacultyName(r.faculty) : (r.faculty || "")).toLowerCase();
+    const rawFaculty = (r.faculty || "").toLowerCase();
+    const matchesFaculty = !fid || facultyNameTh === fid || rawFaculty === fid;
     if (!matchesFaculty) return false;
 
     // Search query condition
@@ -131,7 +132,8 @@ function searchReviews(query, facultyFilter) {
       nameTh.includes(q) ||
       nameEn.includes(q) ||
       legacyCode.includes(q) ||
-      facultyName.includes(q) ||
+      facultyNameTh.includes(q) ||
+      rawFaculty.includes(q) ||
       written.includes(q) ||
       author.includes(q)
     );
@@ -163,7 +165,7 @@ function seedSampleReviews() {
     {
       reviewId: generateId(),
       displayName: "เด็กปี 2 สายชิล",
-      faculty: "Innovative Learning Center",
+      faculty: "สำนักนวัตกรรมการเรียนรู้",
       course_id: "สสน01",
       course_code: "ZIL01",
       name_th: "การจัดการงานและการเงินส่วนบุคคลเพื่อเสริมความมั่นคงในชีวิต",
@@ -188,7 +190,7 @@ function seedSampleReviews() {
     {
       reviewId: generateId(),
       displayName: "สาวนิเทศฯ คนเก๋",
-      faculty: "College of Social Communication Innovation",
+      faculty: "วิทยาลัยนวัตกรรมสื่อสารสังคม",
       course_id: "สวน03",
       course_code: "ZCO03",
       name_th: "พูดเด่นให้เป็นดาว",
@@ -213,7 +215,7 @@ function seedSampleReviews() {
     {
       reviewId: generateId(),
       displayName: "เภสัชมือใหม่",
-      faculty: "Faculty of Pharmacy",
+      faculty: "คณะเภสัชศาสตร์",
       course_id: "สภส01",
       course_code: "ZPH01",
       name_th: "กูรู กูรู้ ยาและสมุนไพร",
@@ -238,7 +240,7 @@ function seedSampleReviews() {
     {
       reviewId: generateId(),
       displayName: "สายศิลป์หัวใจอาร์ต",
-      faculty: "Faculty of Fine Arts",
+      faculty: "คณะศิลปกรรมศาสตร์",
       course_id: "สศก01",
       course_code: "ZFA01",
       name_th: "ศิลปะสร้างสรรค์และนวัตกรรมเพื่องานศิลปะ",
@@ -263,7 +265,7 @@ function seedSampleReviews() {
     {
       reviewId: generateId(),
       displayName: "วิศวะชอบโค้ด",
-      faculty: "Faculty of Engineering",
+      faculty: "คณะวิศวกรรมศาสตร์",
       course_id: "สวศ08",
       course_code: "ZEG08",
       name_th: "ก้าวแรกสู่การคิดเชิงคำนวณและโค้ดดิ้ง",
@@ -288,7 +290,7 @@ function seedSampleReviews() {
     {
       reviewId: generateId(),
       displayName: "เด็กมนุษย์ขอเมาท์",
-      faculty: "Faculty of Humanities",
+      faculty: "คณะมนุษยศาสตร์",
       course_id: "สมน14",
       course_code: "ZHM14",
       name_th: "ภาษาเกาหลีในชีวิตประจำวัน",

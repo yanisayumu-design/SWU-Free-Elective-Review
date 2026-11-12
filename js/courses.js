@@ -8,7 +8,7 @@
 const COURSE_DATABASE = {
   "faculties": [
     {
-      "faculty_name": "Innovative Learning Center",
+      "faculty_name": "สำนักนวัตกรรมการเรียนรู้",
       "courses": [
         {
           "course_id": "สสน01",
@@ -97,7 +97,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "College of Social Communication Innovation",
+      "faculty_name": "วิทยาลัยนวัตกรรมสื่อสารสังคม",
       "courses": [
         {
           "course_id": "สวน01",
@@ -162,7 +162,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Pharmacy",
+      "faculty_name": "คณะเภสัชศาสตร์",
       "courses": [
         {
           "course_id": "สภส01",
@@ -191,7 +191,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Fine Arts",
+      "faculty_name": "คณะศิลปกรรมศาสตร์",
       "courses": [
         {
           "course_id": "สศก01",
@@ -298,7 +298,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Educational and Psychological Test Bureau",
+      "faculty_name": "สำนักทดสอบทางการศึกษาและจิตวิทยา",
       "courses": [
         {
           "course_id": "สทส01",
@@ -321,7 +321,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Engineering",
+      "faculty_name": "คณะวิศวกรรมศาสตร์",
       "courses": [
         {
           "course_id": "สวศ01",
@@ -410,7 +410,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "International College for Sustainability Studies",
+      "faculty_name": "วิทยาลัยนานาชาติเพื่อศึกษาความยั่งยืน",
       "courses": [
         {
           "course_id": "สวย01",
@@ -469,7 +469,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Agricultural Product Innovation and Technology",
+      "faculty_name": "คณะเทคโนโลยีและนวัตกรรมผลิตภัณฑ์การเกษตร",
       "courses": [
         {
           "course_id": "สทก01",
@@ -528,7 +528,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Dentistry",
+      "faculty_name": "คณะทันตแพทยศาสตร์",
       "courses": [
         {
           "course_id": "สทต01",
@@ -551,7 +551,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Education",
+      "faculty_name": "คณะศึกษาศาสตร์",
       "courses": [
         {
           "course_id": "สศษ01",
@@ -622,7 +622,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "College of Creative Industry",
+      "faculty_name": "วิทยาลัยอุตสาหกรรมสร้างสรรค์",
       "courses": [
         {
           "course_id": "สวอ01",
@@ -657,7 +657,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Behavioral Science Research Institute",
+      "faculty_name": "สถาบันวิจัยพฤติกรรมศาสตร์",
       "courses": [
         {
           "course_id": "สวจ01",
@@ -680,7 +680,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Medicine",
+      "faculty_name": "คณะแพทยศาสตร์",
       "courses": [
         {
           "course_id": "สพท01",
@@ -709,7 +709,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Physical Therapy",
+      "faculty_name": "คณะกายภาพบำบัด",
       "courses": [
         {
           "course_id": "สกภ01",
@@ -744,7 +744,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Business Administration for Society",
+      "faculty_name": "คณะบริหารธุรกิจเพื่อสังคม",
       "courses": [
         {
           "course_id": "สบธ01",
@@ -857,7 +857,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Environmental Culture and Ecotourism",
+      "faculty_name": "คณะวัฒนธรรมสิ่งแวดล้อมและการท่องเที่ยวเชิงนิเวศ",
       "courses": [
         {
           "course_id": "สวธ01",
@@ -904,7 +904,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Nursing",
+      "faculty_name": "คณะพยาบาลศาสตร์",
       "courses": [
         {
           "course_id": "สพย01",
@@ -933,7 +933,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Physical Education, Sports and Health",
+      "faculty_name": "คณะพลศึกษา",
       "courses": [
         {
           "course_id": "สพล01",
@@ -992,7 +992,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Bodhivijjalaya College",
+      "faculty_name": "วิทยาลัยโพธิวิชชาลัย",
       "courses": [
         {
           "course_id": "สพธ01",
@@ -1063,7 +1063,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Economics",
+      "faculty_name": "คณะเศรษฐศาสตร์",
       "courses": [
         {
           "course_id": "สศศ01",
@@ -1086,7 +1086,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Social Sciences",
+      "faculty_name": "คณะสังคมศาสตร์",
       "courses": [
         {
           "course_id": "สสค01",
@@ -1151,7 +1151,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Science",
+      "faculty_name": "คณะวิทยาศาสตร์",
       "courses": [
         {
           "course_id": "สวท01",
@@ -1480,7 +1480,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "Faculty of Humanities",
+      "faculty_name": "คณะมนุษยศาสตร์",
       "courses": [
         {
           "course_id": "สมน01",
@@ -1643,6 +1643,34 @@ const COURSE_DATABASE = {
   ]
 };
 
+// รองรับการแปลงชื่อคณะเดิมที่เป็นภาษาอังกฤษให้เป็นภาษาไทยแบบอัตโนมัติ
+const FACULTY_EN_TO_TH = {
+  "innovative learning center": "สำนักนวัตกรรมการเรียนรู้",
+  "college of social communication innovation": "วิทยาลัยนวัตกรรมสื่อสารสังคม",
+  "faculty of pharmacy": "คณะเภสัชศาสตร์",
+  "faculty of fine arts": "คณะศิลปกรรมศาสตร์",
+  "educational and psychological test bureau": "สำนักทดสอบทางการศึกษาและจิตวิทยา",
+  "faculty of engineering": "คณะวิศวกรรมศาสตร์",
+  "international college for sustainability studies": "วิทยาลัยนานาชาติเพื่อศึกษาความยั่งยืน",
+  "faculty of agricultural product innovation and technology": "คณะเทคโนโลยีและนวัตกรรมผลิตภัณฑ์การเกษตร",
+  "faculty of dentistry": "คณะทันตแพทยศาสตร์",
+  "faculty of education": "คณะศึกษาศาสตร์",
+  "college of creative industry": "วิทยาลัยอุตสาหกรรมสร้างสรรค์",
+  "behavioral science research institute": "สถาบันวิจัยพฤติกรรมศาสตร์",
+  "faculty of medicine": "คณะแพทยศาสตร์",
+  "faculty of physical therapy": "คณะกายภาพบำบัด",
+  "faculty of business administration for society": "คณะบริหารธุรกิจเพื่อสังคม",
+  "faculty of environmental culture and ecotourism": "คณะวัฒนธรรมสิ่งแวดล้อมและการท่องเที่ยวเชิงนิเวศ",
+  "faculty of nursing": "คณะพยาบาลศาสตร์",
+  "faculty of physical education, sports and health": "คณะพลศึกษา",
+  "bodhivijjalaya college": "วิทยาลัยโพธิวิชชาลัย",
+  "faculty of economics": "คณะเศรษฐศาสตร์",
+  "faculty of social sciences": "คณะสังคมศาสตร์",
+  "faculty of science": "คณะวิทยาศาสตร์",
+  "faculty of humanities": "คณะมนุษยศาสตร์",
+  "behavioral science research insitute": "สถาบันวิจัยพฤติกรรมศาสตร์"
+};
+
 /**
  * Returns all faculty entries from the master database.
  * @returns {Array<{faculty_name: string, courses: Array<Object>}>}
@@ -1652,28 +1680,33 @@ function getAllFaculties() {
 }
 
 /**
- * Returns the faculty name string.
+ * Returns the faculty name string in Thai.
  * @param {string} facultyNameOrId
  * @returns {string}
  */
 function getFacultyName(facultyNameOrId) {
   if (!facultyNameOrId) return ;
+  const key = String(facultyNameOrId).trim().toLowerCase();
+  if (FACULTY_EN_TO_TH[key]) {
+    return FACULTY_EN_TO_TH[key];
+  }
   const found = COURSE_DATABASE.faculties.find(
-    f => f.faculty_name.toLowerCase() === String(facultyNameOrId).toLowerCase()
+    f => f.faculty_name.toLowerCase() === key
   );
   return found ? found.faculty_name : facultyNameOrId;
 }
 
 /**
- * Returns courses belonging to a given faculty name.
+ * Returns courses belonging to a given faculty name (supports Thai or English).
  * If no facultyName provided, returns all courses across all faculties.
  * @param {string} [facultyName]
  * @returns {Array<Object>}
  */
 function getCoursesByFaculty(facultyName) {
   if (!facultyName) return getAllCourses();
+  const normalized = getFacultyName(facultyName).toLowerCase();
   const fac = COURSE_DATABASE.faculties.find(
-    f => f.faculty_name.toLowerCase() === String(facultyName).toLowerCase()
+    f => f.faculty_name.toLowerCase() === normalized
   );
   return fac ? fac.courses : [];
 }

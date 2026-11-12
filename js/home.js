@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     card.innerHTML = `
       <div class="review-card__header">
         <div class="review-card__badges">
-          <span class="badge badge--faculty">${escHtml(r.faculty || getFacultyName(r.faculty))}</span>
+          <span class="badge badge--faculty">${escHtml(getFacultyName(r.faculty) || r.faculty)}</span>
           <span class="badge badge--credits">${r.credits} หน่วยกิต</span>
         </div>
         <div class="review-card__meta-right">

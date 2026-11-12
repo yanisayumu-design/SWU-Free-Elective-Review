@@ -126,12 +126,10 @@
   <!-- Update hero stats after scripts load -->
   <script>
     (function updateStats() {
-      const reviews   = getAllReviews();
-      const courses   = new Set(reviews.map(r => r.courseId));
-      const faculties = new Set(reviews.map(r => r.faculty));
-      document.getElementById("statReviews").textContent   = reviews.length;
-      document.getElementById("statCourses").textContent   = courses.size;
-      document.getElementById("statFaculties").textContent = faculties.size;
+      const reviews = getAllReviews();
+      document.getElementById("statReviews").textContent = reviews.length;
+      document.getElementById("statCourses").textContent = getAllCourses().length;
+      document.getElementById("statFaculties").textContent = getAllFaculties().length;
     })();
   </script>
 </body>

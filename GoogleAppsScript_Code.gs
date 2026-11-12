@@ -249,7 +249,7 @@ function setupCleanSheet() {
     [
       new Date(now.getTime() - 1 * 86400000),
       "เด็กปี 2 สายชิล",
-      "Innovative Learning Center",
+      "สำนักนวัตกรรมการเรียนรู้",
       "สสน01", "ZIL01",
       "การจัดการงานและการเงินส่วนบุคคลเพื่อเสริมความมั่นคงในชีวิต",
       "Job and Personal Financial Management to Reinforce Life Stability",
@@ -261,7 +261,7 @@ function setupCleanSheet() {
     [
       new Date(now.getTime() - 3 * 86400000),
       "สาวนิเทศฯ คนเก๋",
-      "College of Social Communication Innovation",
+      "วิทยาลัยนวัตกรรมสื่อสารสังคม",
       "สวน03", "ZCO03",
       "พูดเด่นให้เป็นดาว",
       "Speak Like A Super Star",
@@ -273,7 +273,7 @@ function setupCleanSheet() {
     [
       new Date(now.getTime() - 7 * 86400000),
       "เภสัชมือใหม่",
-      "Faculty of Pharmacy",
+      "คณะเภสัชศาสตร์",
       "สภส01", "ZPH01",
       "กูรู กูรู้ ยาและสมุนไพร",
       "Drug and Herb Guru",
@@ -285,7 +285,7 @@ function setupCleanSheet() {
     [
       new Date(now.getTime() - 12 * 86400000),
       "สายศิลป์หัวใจอาร์ต",
-      "Faculty of Fine Arts",
+      "คณะศิลปกรรมศาสตร์",
       "สศก01", "ZFA01",
       "ศิลปะสร้างสรรค์และนวัตกรรมเพื่องานศิลปะ",
       "Creative Art and Innovation for Art",
@@ -297,7 +297,7 @@ function setupCleanSheet() {
     [
       new Date(now.getTime() - 16 * 86400000),
       "วิศวะชอบโค้ด",
-      "Faculty of Engineering",
+      "คณะวิศวกรรมศาสตร์",
       "สวศ08", "ZEG08",
       "ก้าวแรกสู่การคิดเชิงคำนวณและโค้ดดิ้ง",
       "First Step to Computational Thinking and Coding",
@@ -309,7 +309,7 @@ function setupCleanSheet() {
     [
       new Date(now.getTime() - 20 * 86400000),
       "เด็กมนุษย์ขอเมาท์",
-      "Faculty of Humanities",
+      "คณะมนุษยศาสตร์",
       "สมน14", "ZHM14",
       "ภาษาเกาหลีในชีวิตประจำวัน",
       "Korean in Daily Life",
