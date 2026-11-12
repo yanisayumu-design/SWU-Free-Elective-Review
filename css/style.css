@@ -788,6 +788,49 @@ select.form-select:disabled {
   background-color: var(--color-grey-bg);
 }
 
+/* ── Schedule Picker (Start & End Time) ──────────────────────── */
+.schedule-picker {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  max-width: 480px;
+}
+
+.schedule-picker__time-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.schedule-picker__sublabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-grey);
+}
+
+.schedule-picker__divider {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-grey);
+  flex-shrink: 0;
+  user-select: none;
+  padding: 0 4px;
+}
+
+@media (max-width: 440px) {
+  .schedule-picker__time-col select.form-select {
+    padding-left: 12px;
+    padding-right: 32px;
+    font-size: 0.88rem;
+  }
+}
+
 /* ── Radio Option Groups ─────────────────────────────────────── */
 .option-group {
   display: flex;

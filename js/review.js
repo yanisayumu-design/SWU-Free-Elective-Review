@@ -89,6 +89,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // ── Schedule picker change listeners ───────────────────────────────────────
+  const startTimeEl     = document.getElementById("scheduleStartTime");
+  const endTimeEl       = document.getElementById("scheduleEndTime");
+  const scheduleGroupEl = document.getElementById("scheduleGroup");
+
+  [startTimeEl, endTimeEl].forEach(el => {
+    el?.addEventListener("change", () => {
+      scheduleGroupEl?.classList.remove("form-group--error");
+      scheduleGroupEl?.querySelector(".error-hint")?.remove();
+    });
+  });
+
+  startTimeEl?.addEventListener("change", () => {
+    if (startTimeEl.value && endTimeEl.value && endTimeEl.value <= startTimeEl.value) {
+      endTimeEl.value = "";
+    }
+  });
+
   // ── Form submission ────────────────────────────────────────────────────────
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -99,6 +117,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const creditVal = form.querySelector('input[name="credits"]:checked')?.value;
     const formatVal = form.querySelector('input[name="learningFormat"]:checked')?.value;
     const attendVal = form.querySelector('input[name="attendance"]:checked')?.value;
+
+    const startTime   = form.scheduleStartTime?.value || "";
+    const endTime     = form.scheduleEndTime?.value || "";
+    const classSchedule = (startTime && endTime) ? `${startTime}–${endTime}` : "";
 
     const reviewData = {
       displayName:   form.displayName.value.trim(),
@@ -111,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
       courseName:    selectedCourse ? selectedCourse.name_th : "",
       credits:       parseInt(creditVal, 10),
       learningFormat: formatVal,
-      classSchedule: form.classSchedule.value.trim(),
+      classSchedule: classSchedule,
       attendance:    attendVal,
       ratings:       { ...ratings },
       writtenReview: form.writtenReview.value.trim(),
@@ -252,6 +274,40 @@ document.addEventListener("DOMContentLoaded", () => {
       markError(wr, "กรุณาเขียนรีวิวเพื่อแบ่งปันประสบการณ์");
     } else {
       clearError(wr);
+    }
+
+    // 9. Optional schedule validation (if times are selected)
+    const schedGroup = document.getElementById("scheduleGroup");
+    const startTime  = form.scheduleStartTime ? form.scheduleStartTime.value : "";
+    const endTime    = form.scheduleEndTime ? form.scheduleEndTime.value : "";
+
+    if ((startTime && !endTime) || (!startTime && endTime)) {
+      if (schedGroup) {
+        schedGroup.classList.add("form-group--error");
+        let hint = schedGroup.querySelector(".error-hint");
+        if (!hint) {
+          hint = document.createElement("span");
+          hint.className = "error-hint";
+          schedGroup.appendChild(hint);
+        }
+        hint.textContent = "กรุณาเลือกทั้งเวลาเริ่มและเวลาสิ้นสุด หรือเว้นว่างไว้";
+      }
+      valid = false;
+    } else if (startTime && endTime && startTime >= endTime) {
+      if (schedGroup) {
+        schedGroup.classList.add("form-group--error");
+        let hint = schedGroup.querySelector(".error-hint");
+        if (!hint) {
+          hint = document.createElement("span");
+          hint.className = "error-hint";
+          schedGroup.appendChild(hint);
+        }
+        hint.textContent = "เวลาสิ้นสุดต้องอยู่หลังเวลาเริ่ม";
+      }
+      valid = false;
+    } else if (schedGroup) {
+      schedGroup.classList.remove("form-group--error");
+      schedGroup.querySelector(".error-hint")?.remove();
     }
 
     if (!valid) {
