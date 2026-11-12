@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <div class="review-card__details">
         <span class="detail-chip detail-chip--format">${formatIcon(r.learningFormat)} ${escHtml(r.learningFormat)}</span>
-        ${r.classSchedule ? `<span class="detail-chip detail-chip--schedule">🕐 ${escHtml(r.classSchedule)}</span>` : ""}
+        ${r.classSchedule ? `<span class="detail-chip detail-chip--schedule">🕐 ${escHtml(typeof cleanScheduleString === "function" ? cleanScheduleString(r.classSchedule) : r.classSchedule)}</span>` : ""}
         <span class="detail-chip detail-chip--attendance">${attendanceIcon(r.attendance)} ${escHtml(r.attendance)}</span>
         <span class="detail-chip detail-chip--reviewer">👤 ${escHtml(r.displayName)}</span>
       </div>

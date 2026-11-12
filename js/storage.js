@@ -16,13 +16,53 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyZ2RdY7ShRLp
 const STORAGE_KEY = "swu_reviews";
 
 /**
+ * Normalizes class schedule strings to standard "Hr:min - Hr:min" format.
+ * If input contains full Date/GMT string, extracts the time portion.
+ * @param {string} s
+ * @returns {string}
+ */
+function cleanScheduleString(s) {
+  if (!s || typeof s !== "string") return "";
+  const str = s.trim();
+  if (!str) return "";
+
+  // ถ้าเป็น Date string เช่น "Thu Nov 12 2026 21:24:14 GMT+0700 (เวลาอินโดจีน)"
+  if (str.includes("GMT") || str.includes("อินโดจีน") || str.includes("Indochina") || (str.includes("T") && str.length > 16) || /[A-Za-z]{3}\s+[A-Za-z]{3}\s+\d+/.test(str)) {
+    const times = str.match(/\b(\d{1,2}):(\d{2})\b/g);
+    if (times && times.length >= 2) return `${times[0]} - ${times[1]}`;
+    if (times && times.length === 1) return times[0];
+    return str;
+  }
+
+  // ปรับ separator ให้เป็น " - " แบบมาตรฐาน Hr:min - Hr:min
+  return str.replace(/(\d{1,2}:\d{2})\s*[–—\-]\s*(\d{1,2}:\d{2})/g, "$1 - $2");
+}
+
+/**
  * Returns all stored reviews, sorted newest-first.
+ * Automatically cleans any legacy or malformed class schedule strings.
  * @returns {Array<Object>}
  */
 function getAllReviews() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     const reviews = raw ? JSON.parse(raw) : [];
+    let hasMalformedSchedule = false;
+
+    reviews.forEach(r => {
+      if (r.classSchedule) {
+        const cleaned = cleanScheduleString(r.classSchedule);
+        if (cleaned !== r.classSchedule) {
+          r.classSchedule = cleaned;
+          hasMalformedSchedule = true;
+        }
+      }
+    });
+
+    if (hasMalformedSchedule) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+    }
+
     return reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   } catch {
     return [];
@@ -78,6 +118,10 @@ async function syncReviewsFromCloud(onUpdated) {
     const cloudReviews = await resp.json();
 
     if (Array.isArray(cloudReviews) && cloudReviews.length > 0) {
+      // ทำความสะอาดข้อความเวลาเรียนให้เป็น Hr:min - Hr:min เสมอ
+      cloudReviews.forEach(r => {
+        if (r.classSchedule) r.classSchedule = cleanScheduleString(r.classSchedule);
+      });
       // อัปเดตข้อมูลล่าสุดจาก Google Sheets ลงในแคช localStorage
       localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudReviews));
       if (typeof onUpdated === "function") {
@@ -176,7 +220,7 @@ function seedSampleReviews() {
       courseName: "การจัดการงานและการเงินส่วนบุคคลเพื่อเสริมความมั่นคงในชีวิต",
       credits: 4,
       learningFormat: "Onsite",
-      classSchedule: "จันทร์ 09:00–12:00",
+      classSchedule: "จันทร์ 09:00 - 12:00",
       attendance: "มีการเช็คชื่อ",
       ratings: {
         contentClarity: 5,
@@ -201,7 +245,7 @@ function seedSampleReviews() {
       courseName: "พูดเด่นให้เป็นดาว",
       credits: 4,
       learningFormat: "Hybrid",
-      classSchedule: "พุธ 13:00–16:00",
+      classSchedule: "พุธ 13:00 - 16:00",
       attendance: "มีการเช็คชื่อ",
       ratings: {
         contentClarity: 5,
@@ -226,7 +270,7 @@ function seedSampleReviews() {
       courseName: "กูรู กูรู้ ยาและสมุนไพร",
       credits: 4,
       learningFormat: "Online",
-      classSchedule: "ศุกร์ 09:00–12:00",
+      classSchedule: "ศุกร์ 09:00 - 12:00",
       attendance: "ไม่มีการเช็คชื่อ",
       ratings: {
         contentClarity: 5,
@@ -251,7 +295,7 @@ function seedSampleReviews() {
       courseName: "ศิลปะสร้างสรรค์และนวัตกรรมเพื่องานศิลปะ",
       credits: 6,
       learningFormat: "Onsite",
-      classSchedule: "อังคาร 13:00–17:00",
+      classSchedule: "อังคาร 13:00 - 17:00",
       attendance: "มีการเช็คชื่อ",
       ratings: {
         contentClarity: 5,
@@ -276,7 +320,7 @@ function seedSampleReviews() {
       courseName: "ก้าวแรกสู่การคิดเชิงคำนวณและโค้ดดิ้ง",
       credits: 4,
       learningFormat: "Hybrid",
-      classSchedule: "พฤหัสบดี 09:00–12:00",
+      classSchedule: "พฤหัสบดี 09:00 - 12:00",
       attendance: "ไม่แน่ใจ",
       ratings: {
         contentClarity: 4,
@@ -301,7 +345,7 @@ function seedSampleReviews() {
       courseName: "ภาษาเกาหลีในชีวิตประจำวัน",
       credits: 4,
       learningFormat: "Onsite",
-      classSchedule: "อังคาร 09:00–12:00",
+      classSchedule: "อังคาร 09:00 - 12:00",
       attendance: "มีการเช็คชื่อ",
       ratings: {
         contentClarity: 5,

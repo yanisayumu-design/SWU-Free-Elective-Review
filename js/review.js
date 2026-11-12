@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const startTime   = form.scheduleStartTime?.value || "";
     const endTime     = form.scheduleEndTime?.value || "";
-    const classSchedule = (startTime && endTime) ? `${startTime}–${endTime}` : "";
+    const classSchedule = (startTime && endTime) ? `${startTime} - ${endTime}` : "";
 
     const reviewData = {
       displayName:   form.displayName.value.trim(),

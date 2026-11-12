@@ -48,9 +48,11 @@ function doGet(e) {
 
     var headers = rows[0];
 
-    // ตรวจหาตำแหน่งคอลัมน์แบบยืดหยุ่น
+    var tsCol = findCol(headers, ["timestamp", "ประทับเวลา", "วันที่"]);
+
+    // ตรวจหาตำแหน่งคอลัมน์แบบยืดหยุ่น (ไม่ให้ซ้ำกับคอลัมน์ประทับเวลา)
     var colMap = {
-      timestamp:        findCol(headers, ["timestamp", "ประทับเวลา", "วันที่"]),
+      timestamp:        tsCol,
       displayName:      findCol(headers, ["displayname", "ชื่อผู้รีวิว", "ชื่อที่", "ชื่อ"]),
       faculty:          findCol(headers, ["faculty", "คณะ"]),
       courseId:         findCol(headers, ["course_id", "courseid", "รหัสวิชา (ไทย)", "รหัสวิชา"]),
@@ -59,7 +61,7 @@ function doGet(e) {
       nameEn:           findCol(headers, ["name_en", "nameen", "ชื่อวิชา (อังกฤษ)", "ชื่อภาษาอังกฤษ"]),
       credits:          findCol(headers, ["credits", "credit", "หน่วยกิต"]),
       learningFormat:   findCol(headers, ["learningformat", "format", "รูปแบบ"]),
-      classSchedule:    findCol(headers, ["classschedule", "schedule", "ตารางเรียน", "เวลา"]),
+      classSchedule:    findCol(headers, ["classschedule", "schedule", "ตารางเรียน", "เวลาเรียน", "ช่วงเวลา"], [tsCol]),
       attendance:       findCol(headers, ["attendance", "เช็คชื่อ"]),
       ratingContent:    findCol(headers, ["contentclarity", "ความเข้าใจ", "เนื้อหา"]),
       ratingWorkload:   findCol(headers, ["workload", "ปริมาณงาน", "ภาระงาน"]),
@@ -100,7 +102,30 @@ function doGet(e) {
       var rFaculty     = colMap.faculty !== -1 ? String(row[colMap.faculty]).trim() : "";
       var rCredits     = colMap.credits !== -1 ? parseCredits(row[colMap.credits]) : 4;
       var rFormat      = colMap.learningFormat !== -1 ? String(row[colMap.learningFormat]).trim() : "Onsite";
-      var rSchedule    = colMap.classSchedule !== -1 ? String(row[colMap.classSchedule]).trim() : "";
+
+      // ดึงเวลาเรียนและจัดรูปแบบเป็น Hr:min - Hr:min
+      var rSchedule = "";
+      if (colMap.classSchedule !== -1 && colMap.classSchedule !== colMap.timestamp) {
+        var rawSched = row[colMap.classSchedule];
+        if (rawSched instanceof Date) {
+          var sh = rawSched.getHours();
+          var sm = rawSched.getMinutes();
+          rSchedule = (sh < 10 ? "0" : "") + sh + ":" + (sm < 10 ? "0" : "") + sm;
+        } else if (rawSched !== null && rawSched !== undefined) {
+          rSchedule = String(rawSched).trim();
+          if (rSchedule.indexOf("GMT") !== -1 || (rSchedule.indexOf("T") !== -1 && rSchedule.length > 16)) {
+            var mTimes = rSchedule.match(/(\d{1,2}):(\d{2})/g);
+            if (mTimes && mTimes.length >= 2) {
+              rSchedule = mTimes[0] + " - " + mTimes[1];
+            } else if (mTimes && mTimes.length === 1) {
+              rSchedule = mTimes[0];
+            }
+          }
+        }
+      }
+      if (rSchedule) {
+        rSchedule = rSchedule.replace(/(\d{1,2}:\d{2})\s*[–—\-]\s*(\d{1,2}:\d{2})/g, "$1 - $2");
+      }
       var rAttendance  = colMap.attendance !== -1 ? String(row[colMap.attendance]).trim() : "มีการเช็คชื่อ";
 
       var rContent  = colMap.ratingContent !== -1 ? parseScore(row[colMap.ratingContent]) : 5;
@@ -264,7 +289,7 @@ function setupCleanSheet() {
       "สสน01", "ZIL01",
       "การจัดการงานและการเงินส่วนบุคคลเพื่อเสริมความมั่นคงในชีวิต",
       "Job and Personal Financial Management to Reinforce Life Stability",
-      4, "Onsite", "จันทร์ 09:00–12:00", "มีการเช็คชื่อ",
+      4, "Onsite", "จันทร์ 09:00 - 12:00", "มีการเช็คชื่อ",
       5, 5, 4, 5, 5,
       "วิชานี้ดีและมีประโยชน์มากครับ ได้เรียนรู้การวางแผนการเงินส่วนบุคคล การลงทุนขั้นพื้นฐาน และการบริหารเวลาในการทำงาน อาจารย์สอนสนุก ยกตัวอย่างจากชีวิตจริง งานกลุ่มไม่หนัก มีคะแนนในห้องช่วยเยอะมาก แนะนำเพื่อน ๆ ทุกคนครับ",
       "rev_sample_01"
@@ -276,7 +301,7 @@ function setupCleanSheet() {
       "สวน03", "ZCO03",
       "พูดเด่นให้เป็นดาว",
       "Speak Like A Super Star",
-      4, "Hybrid", "พุธ 13:00–16:00", "มีการเช็คชื่อ",
+      4, "Hybrid", "พุธ 13:00 - 16:00", "มีการเช็คชื่อ",
       5, 4, 5, 5, 5,
       "สนุกมากกกก ได้ฝึกทักษะการพูด การใช้ภาษากาย และความมั่นใจต่อหน้าสาธารณะอย่างแท้จริง บรรยากาศในห้องเรียนเป็นกันเอง อาจารย์ให้ฟีดแบ็กตรงจุดและคอยเชียร์ตลอด ไม่มีข้อสอบเขียนแบบเครียด เน้นปฏิบัติล้วน ๆ เกรด A แน่นอนถ้าตั้งใจ",
       "rev_sample_02"
@@ -288,7 +313,7 @@ function setupCleanSheet() {
       "สภส01", "ZPH01",
       "กูรู กูรู้ ยาและสมุนไพร",
       "Drug and Herb Guru",
-      4, "Online", "ศุกร์ 09:00–12:00", "ไม่มีการเช็คชื่อ",
+      4, "Online", "ศุกร์ 09:00 - 12:00", "ไม่มีการเช็คชื่อ",
       5, 4, 4, 5, 4,
       "เนื้อหาเน้นการนำยาและสมุนไพรไปใช้ในชีวิตประจำวันอย่างปลอดภัย เข้าใจง่ายแม้ไม่ได้เรียนสายวิทย์สุขภาพมา อาจารย์ใจดีมาก มีสไลด์ให้ทบทวนครบถ้วน ข้อสอบปรนัยตามเนื้อหาที่สอนเลยครับ",
       "rev_sample_03"
@@ -300,7 +325,7 @@ function setupCleanSheet() {
       "สศก01", "ZFA01",
       "ศิลปะสร้างสรรค์และนวัตกรรมเพื่องานศิลปะ",
       "Creative Art and Innovation for Art",
-      6, "Onsite", "อังคาร 13:00–17:00", "มีการเช็คชื่อ",
+      6, "Onsite", "อังคาร 13:00 - 17:00", "มีการเช็คชื่อ",
       5, 4, 5, 5, 5,
       "ได้ปลดปล่อยความคิดสร้างสรรค์เต็มที่! ไม่จำเป็นต้องมีพื้นฐานวาดรูปมาก่อน อาจารย์เปิดกว้างรับทุกไอเดียและให้คำแนะนำดีมาก งานชิ้นสุดท้ายสนุกและได้ภูมิใจกับผลงานตัวเองค่ะ",
       "rev_sample_04"
@@ -312,7 +337,7 @@ function setupCleanSheet() {
       "สวศ08", "ZEG08",
       "ก้าวแรกสู่การคิดเชิงคำนวณและโค้ดดิ้ง",
       "First Step to Computational Thinking and Coding",
-      4, "Hybrid", "พฤหัสบดี 09:00–12:00", "ไม่แน่ใจ",
+      4, "Hybrid", "พฤหัสบดี 09:00 - 12:00", "ไม่แน่ใจ",
       4, 4, 4, 4, 4,
       "เหมาะมากสำหรับคนที่อยากเริ่มเขียนโปรแกรมโดยไม่มีพื้นฐานมาก่อน สอนตั้งแต่หลักคิดเชิงตรรกะไปจนถึงแบบฝึกหัดโค้ดดิ้งแบบง่าย ๆ มี TA คอยช่วยซัพพอร์ตตลอดเวลา",
       "rev_sample_05"
@@ -324,7 +349,7 @@ function setupCleanSheet() {
       "สมน14", "ZHM14",
       "ภาษาเกาหลีในชีวิตประจำวัน",
       "Korean in Daily Life",
-      4, "Onsite", "อังคาร 09:00–12:00", "มีการเช็คชื่อ",
+      4, "Onsite", "อังคาร 09:00 - 12:00", "มีการเช็คชื่อ",
       5, 5, 5, 5, 5,
       "อาจารย์สอนน่ารักมากกก สำเนียงเป๊ะ เรียนสนุก ได้ฝึกอ่านฮันกึลและบทสนทนาที่ใช้บ่อยในซีรีส์และชีวิตประจำวัน ใครชอบเกาหลีห้ามพลาดเด็ดขาด ได้ A สบาย ๆ ถ้าเข้าเรียนสม่ำเสมอค่ะ",
       "rev_sample_06"
@@ -337,15 +362,34 @@ function setupCleanSheet() {
 }
 
 // ── Helpers ──────────────────────────────────────────────────────
-function findCol(headers, keywords) {
-  for (var i = 0; i < headers.length; i++) {
-    var h = headers[i].toString().toLowerCase().trim();
-    for (var j = 0; j < keywords.length; j++) {
-      if (h.indexOf(keywords[j].toLowerCase()) !== -1) {
+function findCol(headers, keywords, excludeIndices) {
+  excludeIndices = excludeIndices || [];
+
+  // 1. ตรวจสอบแบบตรงกันเป๊ะ (Exact Match) ก่อน
+  for (var j = 0; j < keywords.length; j++) {
+    var kw = keywords[j].toString().toLowerCase().trim();
+    for (var i = 0; i < headers.length; i++) {
+      if (excludeIndices.indexOf(i) !== -1) continue;
+      var h = headers[i].toString().toLowerCase().trim();
+      if (h === kw) {
         return i;
       }
     }
   }
+
+  // 2. ตรวจสอบแบบมีคำนั้นอยู่ (Partial Match) โดยข้ามคอลัมน์ประทับเวลาสำหรับข้อมูลทั่วไป
+  for (var j = 0; j < keywords.length; j++) {
+    var kw = keywords[j].toString().toLowerCase().trim();
+    for (var i = 0; i < headers.length; i++) {
+      if (excludeIndices.indexOf(i) !== -1) continue;
+      var h = headers[i].toString().toLowerCase().trim();
+      if (h.indexOf("ประทับเวลา") !== -1 || h.indexOf("timestamp") !== -1) continue;
+      if (h.indexOf(kw) !== -1) {
+        return i;
+      }
+    }
+  }
+
   return -1;
 }
 
