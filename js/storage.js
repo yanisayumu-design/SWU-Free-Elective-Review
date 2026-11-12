@@ -109,8 +109,10 @@ function searchReviews(query, facultyFilter) {
   const fid = (facultyFilter || "").trim().toLowerCase();
 
   return reviews.filter(r => {
+    const resolved = typeof resolveCourseInfo === "function" ? resolveCourseInfo(r) : {};
+
     // Faculty filter condition
-    const facultyNameTh = (typeof getFacultyName === "function" ? getFacultyName(r.faculty) : (r.faculty || "")).toLowerCase();
+    const facultyNameTh = (resolved.faculty || (typeof getFacultyName === "function" ? getFacultyName(r.faculty) : (r.faculty || ""))).toLowerCase();
     const rawFaculty = (r.faculty || "").toLowerCase();
     const matchesFaculty = !fid || facultyNameTh === fid || rawFaculty === fid;
     if (!matchesFaculty) return false;
@@ -118,10 +120,10 @@ function searchReviews(query, facultyFilter) {
     // Search query condition
     if (!q) return true;
 
-    const courseId   = (r.course_id || "").toLowerCase();
-    const courseCode = (r.course_code || "").toLowerCase();
-    const nameTh     = (r.name_th || r.courseName || "").toLowerCase();
-    const nameEn     = (r.name_en || "").toLowerCase();
+    const courseId   = (resolved.course_id || r.course_id || "").toLowerCase();
+    const courseCode = (resolved.course_code || r.course_code || "").toLowerCase();
+    const nameTh     = (resolved.name_th || r.name_th || r.courseName || "").toLowerCase();
+    const nameEn     = (resolved.name_en || r.name_en || "").toLowerCase();
     const legacyCode = (r.courseId || "").toLowerCase();
     const written    = (r.writtenReview || "").toLowerCase();
     const author     = (r.displayName || "").toLowerCase();

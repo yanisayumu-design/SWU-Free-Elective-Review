@@ -80,16 +80,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const avg = computeAvgRating(r.ratings);
     const dateStr = formatDate(r.createdAt);
 
-    // Course ID & Code display
-    const thaiId  = r.course_id || "";
-    const engCode = r.course_code || "";
-    const nameTh  = r.name_th || r.courseName || "";
-    const nameEn  = r.name_en || "";
+    // Resolve full course info from master database (ensures BOTH Thai & English codes are shown)
+    const resolved = typeof resolveCourseInfo === "function" ? resolveCourseInfo(r) : {};
+    const thaiId   = resolved.course_id || r.course_id || "";
+    const engCode  = resolved.course_code || r.course_code || "";
+    const nameTh   = resolved.name_th || r.name_th || r.courseName || "";
+    const nameEn   = resolved.name_en || r.name_en || "";
+    const faculty  = resolved.faculty || (typeof getFacultyName === "function" ? getFacultyName(r.faculty) : r.faculty) || "";
 
     card.innerHTML = `
       <div class="review-card__header">
         <div class="review-card__badges">
-          <span class="badge badge--faculty">${escHtml(getFacultyName(r.faculty) || r.faculty)}</span>
+          <span class="badge badge--faculty">${escHtml(faculty)}</span>
           <span class="badge badge--credits">${r.credits} หน่วยกิต</span>
         </div>
         <div class="review-card__meta-right">
@@ -100,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="review-card__course">
         <div class="review-card__course-codes">
           ${thaiId ? `<span class="badge-code badge-code--th">${escHtml(thaiId)}</span>` : ""}
-          ${engCode ? `<span class="badge-code badge-code--en">${escHtml(engCode)}</span>` : (!thaiId && r.courseId ? `<span class="badge-code badge-code--en">${escHtml(r.courseId)}</span>` : "")}
+          ${engCode ? `<span class="badge-code badge-code--en">${escHtml(engCode)}</span>` : ""}
         </div>
         <h3 class="review-card__name">${escHtml(nameTh)}</h3>
         ${nameEn ? `<p class="review-card__name-en">${escHtml(nameEn)}</p>` : ""}

@@ -81,6 +81,17 @@ function doGet(e) {
       var rNameTh     = colMap.nameTh !== -1 ? String(row[colMap.nameTh]).trim() : "";
       var rNameEn     = colMap.nameEn !== -1 ? String(row[colMap.nameEn]).trim() : "";
 
+      // แยกอัตโนมัติถ้ามีรหัสทั้งไทยและอังกฤษในช่องเดียว เช่น "สสน01 / ZIL01"
+      if (!rCourseCode && rCourseId.indexOf("/") !== -1) {
+        var parts = rCourseId.split("/");
+        rCourseId   = parts[0].trim();
+        rCourseCode = parts[1].trim();
+      } else if (!rCourseId && rCourseCode.indexOf("/") !== -1) {
+        var parts = rCourseCode.split("/");
+        rCourseId   = parts[0].trim();
+        rCourseCode = parts[1].trim();
+      }
+
       // ข้ามแถวที่ไม่มีข้อมูลรายวิชา (แถวขยะ/แถวทดสอบที่ไม่ได้เลือกวิชา)
       if (!rCourseId && !rCourseCode && !rNameTh) continue;
 

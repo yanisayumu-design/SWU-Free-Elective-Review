@@ -1739,11 +1739,18 @@ function getCourseById(identifier) {
 
   for (const fac of COURSE_DATABASE.faculties) {
     for (const c of fac.courses) {
+      const cId   = c.course_id.toLowerCase();
+      const cCode = c.course_code.toLowerCase();
       if (
-        c.course_id.toLowerCase() === idStr ||
-        c.course_code.toLowerCase() === idStr ||
-        (c.course_id + "_" + c.course_code).toLowerCase() === idStr ||
-        (c.course_id + "/" + c.course_code).toLowerCase() === idStr
+        cId === idStr ||
+        cCode === idStr ||
+        idStr === `${cId}/${cCode}` ||
+        idStr === `${cId} / ${cCode}` ||
+        idStr === `${cId}_${cCode}` ||
+        idStr === `${cId} - ${cCode}` ||
+        idStr === `${cCode}/${cId}` ||
+        idStr === `${cCode} / ${cId}` ||
+        (idStr.includes(cId) && idStr.includes(cCode))
       ) {
         return {
           ...c,
@@ -1753,4 +1760,81 @@ function getCourseById(identifier) {
     }
   }
   return null;
+}
+
+/**
+ * Finds a course by course name (Thai or English, exact or partial match).
+ * @param {string} name
+ * @returns {Object|null}
+ */
+function findCourseByName(name) {
+  if (!name) return null;
+  const n = String(name).trim().toLowerCase();
+  if (n.length < 3) return null;
+
+  for (const fac of COURSE_DATABASE.faculties) {
+    for (const c of fac.courses) {
+      const th = c.name_th.toLowerCase();
+      const en = c.name_en.toLowerCase();
+      if (th === n || en === n || th.includes(n) || n.includes(th)) {
+        return {
+          ...c,
+          faculty_name: fac.faculty_name,
+        };
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Resolves full course information (Thai ID, English code, Thai name, English name, Faculty)
+ * from any partial review data.
+ * @param {Object} item
+ * @returns {{course_id: string, course_code: string, name_th: string, name_en: string, faculty: string}}
+ */
+function resolveCourseInfo(item) {
+  if (!item) return { course_id: "", course_code: "", name_th: "", name_en: "", faculty: "" };
+
+  let courseId   = String(item.course_id || "").trim();
+  let courseCode = String(item.course_code || "").trim();
+  let nameTh     = String(item.name_th || item.courseName || "").trim();
+  let nameEn     = String(item.name_en || "").trim();
+  let faculty    = String(item.faculty || "").trim();
+
+  // If composite courseId like "สสน01 / ZIL01"
+  if (item.courseId && typeof item.courseId === "string") {
+    const raw = item.courseId.trim();
+    if (raw.includes("/")) {
+      const parts = raw.split("/").map(s => s.trim());
+      if (!courseId && parts[0]) courseId = parts[0];
+      if (!courseCode && parts[1]) courseCode = parts[1];
+    } else if (!courseId && !courseCode) {
+      if (/^[A-Za-z0-9]+$/.test(raw)) courseCode = raw;
+      else courseId = raw;
+    }
+  }
+
+  // Lookup in database
+  const matched = getCourseById(courseCode) ||
+                  getCourseById(courseId) ||
+                  getCourseById(item.courseId) ||
+                  findCourseByName(nameTh) ||
+                  findCourseByName(nameEn);
+
+  if (matched) {
+    if (!courseId)   courseId   = matched.course_id;
+    if (!courseCode) courseCode = matched.course_code;
+    if (!nameTh)     nameTh     = matched.name_th;
+    if (!nameEn)     nameEn     = matched.name_en;
+    if (!faculty)    faculty    = matched.faculty_name;
+  }
+
+  return {
+    course_id:   courseId,
+    course_code: courseCode,
+    name_th:     nameTh,
+    name_en:     nameEn,
+    faculty:     getFacultyName(faculty) || faculty,
+  };
 }
