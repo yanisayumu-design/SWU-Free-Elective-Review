@@ -8,7 +8,7 @@
 const COURSE_DATABASE = {
   "faculties": [
     {
-      "faculty_name": "สำนักนวัตกรรมการเรียนรู้",
+      "faculty_name": "สำนักนวัตกรรมการเรียนรู้ (Innovative Learning Center)",
       "courses": [
         {
           "course_id": "สสน01",
@@ -97,7 +97,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "วิทยาลัยนวัตกรรมสื่อสารสังคม",
+      "faculty_name": "วิทยาลัยนวัตกรรมสื่อสารสังคม (College of Social Communication Innovation: COSCI)",
       "courses": [
         {
           "course_id": "สวน01",
@@ -162,7 +162,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะเภสัชศาสตร์",
+      "faculty_name": "คณะเภสัชศาสตร์ (Faculty of Pharmacy)",
       "courses": [
         {
           "course_id": "สภส01",
@@ -191,7 +191,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะศิลปกรรมศาสตร์",
+      "faculty_name": "คณะศิลปกรรมศาสตร์ (Faculty of Fine Arts: FOFA)",
       "courses": [
         {
           "course_id": "สศก01",
@@ -298,7 +298,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "สำนักทดสอบทางการศึกษาและจิตวิทยา",
+      "faculty_name": "สำนักทดสอบทางการศึกษาและจิตวิทยา (Educational and Psychological Test Bureau)",
       "courses": [
         {
           "course_id": "สทส01",
@@ -321,7 +321,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะวิศวกรรมศาสตร์",
+      "faculty_name": "คณะวิศวกรรมศาสตร์ (Faculty of Engineering)",
       "courses": [
         {
           "course_id": "สวศ01",
@@ -410,7 +410,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "วิทยาลัยนานาชาติเพื่อศึกษาความยั่งยืน",
+      "faculty_name": "วิทยาลัยนานาชาติเพื่อศึกษาความยั่งยืน (International College for Sustainability Studies: SWUIC)",
       "courses": [
         {
           "course_id": "สวย01",
@@ -469,7 +469,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะเทคโนโลยีและนวัตกรรมผลิตภัณฑ์การเกษตร",
+      "faculty_name": "คณะเทคโนโลยีและนวัตกรรมผลิตภัณฑ์การเกษตร (Faculty of Agricultural Product Innovation and Technology: AI)",
       "courses": [
         {
           "course_id": "สทก01",
@@ -528,7 +528,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะทันตแพทยศาสตร์",
+      "faculty_name": "คณะทันตแพทยศาสตร์ (Faculty of Dentistry)",
       "courses": [
         {
           "course_id": "สทต01",
@@ -551,7 +551,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะศึกษาศาสตร์",
+      "faculty_name": "คณะศึกษาศาสตร์ (Faculty of Education)",
       "courses": [
         {
           "course_id": "สศษ01",
@@ -622,7 +622,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "วิทยาลัยอุตสาหกรรมสร้างสรรค์",
+      "faculty_name": "วิทยาลัยอุตสาหกรรมสร้างสรรค์ (College of Creative Industry: CCI)",
       "courses": [
         {
           "course_id": "สวอ01",
@@ -657,7 +657,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "สถาบันวิจัยพฤติกรรมศาสตร์",
+      "faculty_name": "สถาบันวิจัยพฤติกรรมศาสตร์ (Behavioral Science Research Institute)",
       "courses": [
         {
           "course_id": "สวจ01",
@@ -680,7 +680,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะแพทยศาสตร์",
+      "faculty_name": "คณะแพทยศาสตร์ (Faculty of Medicine)",
       "courses": [
         {
           "course_id": "สพท01",
@@ -709,7 +709,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะกายภาพบำบัด",
+      "faculty_name": "คณะกายภาพบำบัด (Faculty of Physical Therapy)",
       "courses": [
         {
           "course_id": "สกภ01",
@@ -744,7 +744,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะบริหารธุรกิจเพื่อสังคม",
+      "faculty_name": "คณะบริหารธุรกิจเพื่อสังคม (Faculty of Business Administration for Society: BAS)",
       "courses": [
         {
           "course_id": "สบธ01",
@@ -857,7 +857,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะวัฒนธรรมสิ่งแวดล้อมและการท่องเที่ยวเชิงนิเวศ",
+      "faculty_name": "คณะวัฒนธรรมสิ่งแวดล้อมและการท่องเที่ยวเชิงนิเวศ (Faculty of Environmental Culture and Ecotourism: ECE)",
       "courses": [
         {
           "course_id": "สวธ01",
@@ -904,7 +904,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะพยาบาลศาสตร์",
+      "faculty_name": "คณะพยาบาลศาสตร์ (Faculty of Nursing)",
       "courses": [
         {
           "course_id": "สพย01",
@@ -933,7 +933,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะพลศึกษา",
+      "faculty_name": "คณะพลศึกษา (Faculty of Physical Education)",
       "courses": [
         {
           "course_id": "สพล01",
@@ -992,7 +992,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "วิทยาลัยโพธิวิชชาลัย",
+      "faculty_name": "วิทยาลัยโพธิวิชชาลัย (Bodhivijjalaya College)",
       "courses": [
         {
           "course_id": "สพธ01",
@@ -1063,7 +1063,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะเศรษฐศาสตร์",
+      "faculty_name": "คณะเศรษฐศาสตร์ (Faculty of Economics)",
       "courses": [
         {
           "course_id": "สศศ01",
@@ -1086,7 +1086,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะสังคมศาสตร์",
+      "faculty_name": "คณะสังคมศาสตร์ (Faculty of Social Sciences)",
       "courses": [
         {
           "course_id": "สสค01",
@@ -1151,7 +1151,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะวิทยาศาสตร์",
+      "faculty_name": "คณะวิทยาศาสตร์ (Faculty of Science)",
       "courses": [
         {
           "course_id": "สวท01",
@@ -1480,7 +1480,7 @@ const COURSE_DATABASE = {
       ]
     },
     {
-      "faculty_name": "คณะมนุษยศาสตร์",
+      "faculty_name": "คณะมนุษยศาสตร์ (Faculty of Humanities)",
       "courses": [
         {
           "course_id": "สมน01",
@@ -1680,20 +1680,37 @@ function getAllFaculties() {
 }
 
 /**
- * Returns the faculty name string in Thai.
+ * Returns the faculty name string in Thai (or full bilingual format).
  * @param {string} facultyNameOrId
  * @returns {string}
  */
 function getFacultyName(facultyNameOrId) {
-  if (!facultyNameOrId) return ;
+  if (!facultyNameOrId) return "";
   const key = String(facultyNameOrId).trim().toLowerCase();
-  if (FACULTY_EN_TO_TH[key]) {
-    return FACULTY_EN_TO_TH[key];
-  }
+
+  // 1. Direct match with faculty_name
   const found = COURSE_DATABASE.faculties.find(
     f => f.faculty_name.toLowerCase() === key
   );
-  return found ? found.faculty_name : facultyNameOrId;
+  if (found) return found.faculty_name;
+
+  // 2. Check mapped English names
+  if (FACULTY_EN_TO_TH[key]) {
+    const targetTh = FACULTY_EN_TO_TH[key].toLowerCase();
+    const matchByTh = COURSE_DATABASE.faculties.find(
+      f => f.faculty_name.toLowerCase().includes(targetTh)
+    );
+    if (matchByTh) return matchByTh.faculty_name;
+  }
+
+  // 3. Partial match by Thai name prefix or English part
+  const partialMatch = COURSE_DATABASE.faculties.find(
+    f => f.faculty_name.toLowerCase().startsWith(key) ||
+         f.faculty_name.toLowerCase().includes(key)
+  );
+  if (partialMatch) return partialMatch.faculty_name;
+
+  return facultyNameOrId;
 }
 
 /**
@@ -1706,7 +1723,9 @@ function getCoursesByFaculty(facultyName) {
   if (!facultyName) return getAllCourses();
   const normalized = getFacultyName(facultyName).toLowerCase();
   const fac = COURSE_DATABASE.faculties.find(
-    f => f.faculty_name.toLowerCase() === normalized
+    f => f.faculty_name.toLowerCase() === normalized ||
+         f.faculty_name.toLowerCase().includes(normalized) ||
+         normalized.includes(f.faculty_name.toLowerCase())
   );
   return fac ? fac.courses : [];
 }
