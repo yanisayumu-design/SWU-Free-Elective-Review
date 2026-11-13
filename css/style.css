@@ -58,6 +58,42 @@
   padding: 0;
 }
 
+/* ── Clean SVG Vector Icons ───────────────────────────────────── */
+.ui-icon {
+  width: 1.15em;
+  height: 1.15em;
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.ui-icon--xs {
+  width: 0.9em;
+  height: 0.9em;
+}
+
+.ui-icon--sm {
+  width: 1em;
+  height: 1em;
+}
+
+.ui-icon--lg {
+  width: 2em;
+  height: 2em;
+}
+
+.ui-icon--xl {
+  width: 2.8em;
+  height: 2.8em;
+}
+
+.ui-chip-icon {
+  width: 0.95em;
+  height: 0.95em;
+  vertical-align: -0.1em;
+  margin-right: 3px;
+}
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;

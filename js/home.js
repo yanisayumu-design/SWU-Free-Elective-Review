@@ -58,7 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (reviews.length === 0) {
       reviewsGrid.innerHTML = `
         <div class="empty-state">
-          <div class="empty-state__icon">🔍</div>
+          <div class="empty-state__icon">
+            <svg class="ui-icon ui-icon--xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </div>
           <p class="empty-state__title">ไม่พบรีวิวที่ค้นหา</p>
           <p class="empty-state__sub">ลองเปลี่ยนคำค้นหาหรือเลือกคณะอื่นดูนะ</p>
         </div>`;
@@ -110,9 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <div class="review-card__details">
         <span class="detail-chip detail-chip--format">${formatIcon(r.learningFormat)} ${escHtml(r.learningFormat)}</span>
-        ${r.classSchedule ? `<span class="detail-chip detail-chip--schedule">🕐 ${escHtml(typeof cleanScheduleString === "function" ? cleanScheduleString(r.classSchedule) : r.classSchedule)}</span>` : ""}
+        ${r.classSchedule ? `<span class="detail-chip detail-chip--schedule">${scheduleIcon()} ${escHtml(typeof cleanScheduleString === "function" ? cleanScheduleString(r.classSchedule) : r.classSchedule)}</span>` : ""}
         <span class="detail-chip detail-chip--attendance">${attendanceIcon(r.attendance)} ${escHtml(r.attendance)}</span>
-        <span class="detail-chip detail-chip--reviewer">👤 ${escHtml(r.displayName)}</span>
+        <span class="detail-chip detail-chip--reviewer">${reviewerIcon()} ${escHtml(r.displayName)}</span>
       </div>
 
       <div class="review-card__ratings">
@@ -131,7 +136,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       ${(r.writtenReview && r.writtenReview.trim()) ? `
       <div class="review-card__written">
-        <div class="written-label">💬 รีวิวจากผู้เรียน</div>
+        <div class="written-label">
+          <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          รีวิวจากผู้เรียน
+        </div>
         <p class="written-text">${escHtml(r.writtenReview.trim())}</p>
       </div>` : ""}
     `;
@@ -178,14 +188,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function formatIcon(format) {
-    const map = { Online: "💻", Onsite: "🏫", Hybrid: "🔄" };
-    return map[format] || "📚";
+    if (format === "Online") {
+      return `<svg class="ui-icon ui-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`;
+    }
+    if (format === "Onsite") {
+      return `<svg class="ui-icon ui-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 10h1v2H9zM14 10h1v2H14zM9 14h1v2H9zM14 14h1v2H14z"/></svg>`;
+    }
+    if (format === "Hybrid") {
+      return `<svg class="ui-icon ui-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>`;
+    }
+    return `<svg class="ui-icon ui-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`;
   }
 
   function attendanceIcon(att) {
-    if (att === "มีการเช็คชื่อ") return "✅";
-    if (att === "ไม่มีการเช็คชื่อ") return "❌";
-    return "❓";
+    if (att === "มีการเช็คชื่อ") {
+      return `<svg class="ui-icon ui-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+    }
+    if (att === "ไม่มีการเช็คชื่อ") {
+      return `<svg class="ui-icon ui-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+    }
+    return `<svg class="ui-icon ui-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
+  }
+
+  function scheduleIcon() {
+    return `<svg class="ui-icon ui-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`;
+  }
+
+  function reviewerIcon() {
+    return `<svg class="ui-icon ui-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
   }
 
   function escHtml(str) {

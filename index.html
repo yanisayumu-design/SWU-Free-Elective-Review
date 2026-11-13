@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://googleapis.com" rel="stylesheet">
   <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E02424' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M22 10v6M2 10l10-5 10 5-10 5z'/><path d='M6 12v5c0 2 2 3 6 3s6-1 6-3v-5'/></svg>" />
 </head>
 
 <body>
@@ -21,12 +21,23 @@
   <nav class="navbar" role="navigation" aria-label="เมนูหลัก">
     <div class="navbar__inner">
       <a href="index.html" class="navbar__logo" aria-label="หน้าหลัก">
-        <div class="navbar__logo-icon">🎓</div>
+        <div class="navbar__logo-icon">
+          <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
+          </svg>
+        </div>
         <span>SWU Free Elective Review</span>
       </a>
       <div class="navbar__nav">
         <a href="index.html" class="nav-link nav-link--active" aria-current="page">Home</a>
-        <a href="review.html" class="nav-link nav-link--cta">Review</a>
+        <a href="review.html" class="nav-link nav-link--cta">
+          <svg class="ui-icon ui-icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"/>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+          Review
+        </a>
       </div>
     </div>
   </nav>
@@ -48,7 +59,11 @@
           เพื่อให้คุณเลือกวิชาเสรีที่ใช่ด้วยตนเอง
         </p>
         <a href="review.html" class="hero__cta">
-          ✍️ Review Your SWU Free Elective
+          <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"/>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+          Review Your SWU Free Elective
         </a>
 
         <!-- Dynamic stat counters -->
@@ -74,10 +89,21 @@
     ══════════════════════════════════════════════════════ -->
     <section class="search-section" aria-label="ค้นหารีวิว">
       <div class="search-section__inner">
-        <p class="search-section__title">🔍 ค้นหารีวิววิชาเสรี</p>
+        <p class="search-section__title">
+          <svg class="ui-icon ui-icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          ค้นหารีวิววิชาเสรี
+        </p>
         <div class="search-row">
           <div class="search-bar-wrap">
-            <span class="search-bar-wrap__icon" aria-hidden="true">🔍</span>
+            <span class="search-bar-wrap__icon" aria-hidden="true">
+              <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </span>
             <input type="search" id="searchInput" placeholder="พิมพ์ชื่อวิชา รหัสวิชา หรือคำค้นหา..." autocomplete="off"
               aria-label="ค้นหาวิชา" />
           </div>
@@ -112,7 +138,12 @@
       <strong>Review SWU Free Elective</strong> — พื้นที่แบ่งปันประสบการณ์จากนักศึกษา มศว
     </p>
     <p class="footer__warning">
-      ⚠️ รีวิวเหล่านี้จัดเก็บเฉพาะในเบราว์เซอร์ของคุณเท่านั้น ไม่มีการซิงก์ระหว่างผู้ใช้คนอื่น
+      <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:text-bottom; margin-right:4px;">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      รีวิวเหล่านี้จัดเก็บเฉพาะในเบราว์เซอร์ของคุณเท่านั้น ไม่มีการซิงก์ระหว่างผู้ใช้คนอื่น
     </p>
   </footer>
 
