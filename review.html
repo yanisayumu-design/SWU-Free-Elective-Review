@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Review SWU Free Elective — ส่งรีวิว</title>
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E02424' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M22 10v6M2 10l10-5 10 5-10 5z'/><path d='M6 12v5c0 2 2 3 6 3s6-1 6-3v-5'/></svg>" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E02424' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M22 10v6M2 10l10-5 10 5-10 5z'/><path d='M6 12v5c0 2 2 3 6 3s6-1 6-3v-5'/></svg>" />
 </head>
+
 <body>
 
   <!-- ══════════════════════════════════════════════════════
@@ -16,21 +19,23 @@
     <div class="navbar__inner">
       <a href="index.html" class="navbar__logo" aria-label="หน้าหลัก">
         <div class="navbar__logo-icon">
-          <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-            <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
+          <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" />
           </svg>
         </div>
         <span>Review SWU Free Elective</span>
       </a>
       <div class="navbar__nav">
-        <a href="index.html"  class="nav-link">หน้าหลัก</a>
+        <a href="index.html" class="nav-link">Home</a>
         <a href="review.html" class="nav-link nav-link--active nav-link--cta" aria-current="page">
-          <svg class="ui-icon ui-icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 20h9"/>
-            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          <svg class="ui-icon ui-icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9" />
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
           </svg>
-          รีวิว
+          Review
         </a>
       </div>
     </div>
@@ -57,8 +62,9 @@
       <!-- ── SUCCESS MESSAGE (hidden until submission) ───── -->
       <div id="successMessage" role="alert" aria-live="polite">
         <div class="success-icon">
-          <svg class="ui-icon ui-icon--lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
+          <svg class="ui-icon ui-icon--lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12" />
           </svg>
         </div>
         <h2 class="success-title">ส่งรีวิวสำเร็จแล้ว!</h2>
@@ -68,16 +74,18 @@
         </p>
         <div class="success-actions">
           <button id="goHomeBtn" class="btn-primary">
-            <svg class="ui-icon ui-icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-              <polyline points="9 22 9 12 15 12 15 22"/>
+            <svg class="ui-icon ui-icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
             </svg>
             กลับหน้าหลัก
           </button>
           <button id="reviewMoreBtn" class="btn-secondary">
-            <svg class="ui-icon ui-icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 20h9"/>
-              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            <svg class="ui-icon ui-icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
             </svg>
             รีวิววิชาอื่นต่อ
           </button>
@@ -94,9 +102,10 @@
           <div class="form-section">
             <div class="form-section__title">
               <div class="form-section__title-icon">
-                <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
+                <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
                 </svg>
               </div>
               ข้อมูลผู้รีวิว
@@ -106,15 +115,8 @@
               <label for="displayName" class="form-label">
                 ชื่อที่ต้องการแสดง <span class="required">*</span>
               </label>
-              <input
-                type="text"
-                id="displayName"
-                name="displayName"
-                class="form-input"
-                placeholder="เช่น นักศึกษาปี 2, เด็กวิทย์, etc."
-                autocomplete="off"
-                maxlength="60"
-              />
+              <input type="text" id="displayName" name="displayName" class="form-input"
+                placeholder="เช่น นักศึกษาปี 2, เด็กวิทย์, etc." autocomplete="off" maxlength="60" />
               <span class="form-hint">ไม่ต้องใช้ชื่อจริงหรือรหัสนักศึกษา</span>
             </div>
           </div>
@@ -123,9 +125,10 @@
           <div class="form-section">
             <div class="form-section__title">
               <div class="form-section__title-icon">
-                <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
                 </svg>
               </div>
               ข้อมูลรายวิชา
@@ -158,24 +161,26 @@
               <div class="option-group">
                 <input type="radio" id="credits4" name="credits" value="4" />
                 <label for="credits4">
-                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="9" y1="9" x2="9" y2="9.01"/>
-                    <line x1="15" y1="9" x2="15" y2="9.01"/>
-                    <line x1="9" y1="15" x2="9" y2="15.01"/>
-                    <line x1="15" y1="15" x2="15" y2="15.01"/>
+                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <line x1="9" y1="9" x2="9" y2="9.01" />
+                    <line x1="15" y1="9" x2="15" y2="9.01" />
+                    <line x1="9" y1="15" x2="9" y2="15.01" />
+                    <line x1="15" y1="15" x2="15" y2="15.01" />
                   </svg>
                   4 หน่วยกิต
                 </label>
 
                 <input type="radio" id="credits6" name="credits" value="6" />
                 <label for="credits6">
-                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="9" y1="9" x2="9" y2="9.01"/>
-                    <line x1="15" y1="9" x2="15" y2="9.01"/>
-                    <line x1="9" y1="15" x2="9" y2="15.01"/>
-                    <line x1="15" y1="15" x2="15" y2="15.01"/>
+                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <line x1="9" y1="9" x2="9" y2="9.01" />
+                    <line x1="15" y1="9" x2="15" y2="9.01" />
+                    <line x1="9" y1="15" x2="9" y2="15.01" />
+                    <line x1="15" y1="15" x2="15" y2="15.01" />
                   </svg>
                   6 หน่วยกิต
                 </label>
@@ -187,11 +192,12 @@
           <div class="form-section">
             <div class="form-section__title">
               <div class="form-section__title-icon">
-                <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                  <line x1="16" y1="2" x2="16" y2="6"/>
-                  <line x1="8" y1="2" x2="8" y2="6"/>
-                  <line x1="3" y1="10" x2="21" y2="10"/>
+                <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
                 </svg>
               </div>
               รายละเอียดการเรียน
@@ -201,32 +207,35 @@
             <div class="form-group" id="formatGroup">
               <span class="form-label">รูปแบบการเรียน <span class="required">*</span></span>
               <div class="option-group">
-                <input type="radio" id="formatOnline"  name="learningFormat" value="Online" />
+                <input type="radio" id="formatOnline" name="learningFormat" value="Online" />
                 <label for="formatOnline">
-                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                    <line x1="8" y1="21" x2="16" y2="21"/>
-                    <line x1="12" y1="17" x2="12" y2="21"/>
+                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                    <line x1="8" y1="21" x2="16" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
                   </svg>
                   Online
                 </label>
 
-                <input type="radio" id="formatOnsite"  name="learningFormat" value="Onsite" />
+                <input type="radio" id="formatOnsite" name="learningFormat" value="Onsite" />
                 <label for="formatOnsite">
-                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 21h18"/>
-                    <path d="M5 21V7l7-4 7 4v14"/>
-                    <path d="M9 10h1v2H9zM14 10h1v2H14zM9 14h1v2H9zM14 14h1v2H14z"/>
+                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 21h18" />
+                    <path d="M5 21V7l7-4 7 4v14" />
+                    <path d="M9 10h1v2H9zM14 10h1v2H14zM9 14h1v2H9zM14 14h1v2H14z" />
                   </svg>
                   Onsite
                 </label>
 
-                <input type="radio" id="formatHybrid"  name="learningFormat" value="Hybrid" />
+                <input type="radio" id="formatHybrid" name="learningFormat" value="Hybrid" />
                 <label for="formatHybrid">
-                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="23 4 23 10 17 10"/>
-                    <polyline points="1 20 1 14 7 14"/>
-                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 4 23 10 17 10" />
+                    <polyline points="1 20 1 14 7 14" />
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
                   </svg>
                   Hybrid
                 </label>
@@ -323,29 +332,32 @@
             <div class="form-group" id="attendanceGroup">
               <span class="form-label">การเช็คชื่อ <span class="required">*</span></span>
               <div class="option-group">
-                <input type="radio" id="attYes"     name="attendance" value="มีการเช็คชื่อ" />
+                <input type="radio" id="attYes" name="attendance" value="มีการเช็คชื่อ" />
                 <label for="attYes">
-                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"/>
+                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
                   </svg>
                   มีการเช็คชื่อ
                 </label>
 
-                <input type="radio" id="attNo"      name="attendance" value="ไม่มีการเช็คชื่อ" />
+                <input type="radio" id="attNo" name="attendance" value="ไม่มีการเช็คชื่อ" />
                 <label for="attNo">
-                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"/>
-                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
                   </svg>
                   ไม่มีการเช็คชื่อ
                 </label>
 
-                <input type="radio" id="attUnsure"  name="attendance" value="ไม่แน่ใจ" />
+                <input type="radio" id="attUnsure" name="attendance" value="ไม่แน่ใจ" />
                 <label for="attUnsure">
-                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
                   </svg>
                   ไม่แน่ใจ
                 </label>
@@ -357,8 +369,10 @@
           <div class="form-section" id="ratingsSection">
             <div class="form-section__title">
               <div class="form-section__title-icon">
-                <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                 </svg>
               </div>
               ให้คะแนนวิชานี้
@@ -371,8 +385,10 @@
 
               <div class="form-group">
                 <div class="rating-form-row">
-                  <span class="rating-form-row__label">1. ความเข้าใจง่ายของเนื้อหา <span class="required">*</span></span>
-                  <div class="rating-group" data-rating-key="contentClarity" role="group" aria-label="ความเข้าใจง่ายของเนื้อหา">
+                  <span class="rating-form-row__label">1. ความเข้าใจง่ายของเนื้อหา <span
+                      class="required">*</span></span>
+                  <div class="rating-group" data-rating-key="contentClarity" role="group"
+                    aria-label="ความเข้าใจง่ายของเนื้อหา">
                     <button type="button" class="rating-btn" data-value="1" aria-label="1 คะแนน">1</button>
                     <button type="button" class="rating-btn" data-value="2" aria-label="2 คะแนน">2</button>
                     <button type="button" class="rating-btn" data-value="3" aria-label="3 คะแนน">3</button>
@@ -385,7 +401,8 @@
               <div class="form-group">
                 <div class="rating-form-row">
                   <span class="rating-form-row__label">2. ความเหมาะสมของปริมาณงาน <span class="required">*</span></span>
-                  <div class="rating-group" data-rating-key="workloadAppropriateness" role="group" aria-label="ความเหมาะสมของปริมาณงาน">
+                  <div class="rating-group" data-rating-key="workloadAppropriateness" role="group"
+                    aria-label="ความเหมาะสมของปริมาณงาน">
                     <button type="button" class="rating-btn" data-value="1" aria-label="1 คะแนน">1</button>
                     <button type="button" class="rating-btn" data-value="2" aria-label="2 คะแนน">2</button>
                     <button type="button" class="rating-btn" data-value="3" aria-label="3 คะแนน">3</button>
@@ -411,7 +428,8 @@
               <div class="form-group">
                 <div class="rating-form-row">
                   <span class="rating-form-row__label">4. ความใจดีของอาจารย์ <span class="required">*</span></span>
-                  <div class="rating-group" data-rating-key="instructorKindness" role="group" aria-label="ความใจดีของอาจารย์">
+                  <div class="rating-group" data-rating-key="instructorKindness" role="group"
+                    aria-label="ความใจดีของอาจารย์">
                     <button type="button" class="rating-btn" data-value="1" aria-label="1 คะแนน">1</button>
                     <button type="button" class="rating-btn" data-value="2" aria-label="2 คะแนน">2</button>
                     <button type="button" class="rating-btn" data-value="3" aria-label="3 คะแนน">3</button>
@@ -424,7 +442,8 @@
               <div class="form-group">
                 <div class="rating-form-row">
                   <span class="rating-form-row__label">5. ความง่ายของการให้เกรด <span class="required">*</span></span>
-                  <div class="rating-group" data-rating-key="gradingEase" role="group" aria-label="ความง่ายของการให้เกรด">
+                  <div class="rating-group" data-rating-key="gradingEase" role="group"
+                    aria-label="ความง่ายของการให้เกรด">
                     <button type="button" class="rating-btn" data-value="1" aria-label="1 คะแนน">1</button>
                     <button type="button" class="rating-btn" data-value="2" aria-label="2 คะแนน">2</button>
                     <button type="button" class="rating-btn" data-value="3" aria-label="3 คะแนน">3</button>
@@ -441,8 +460,9 @@
           <div class="form-section">
             <div class="form-section__title">
               <div class="form-section__title-icon">
-                <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                 </svg>
               </div>
               รีวิวของคุณ
@@ -452,24 +472,19 @@
               <label for="writtenReview" class="form-label">
                 แบ่งปันประสบการณ์เรียน <span class="required">*</span>
               </label>
-              <textarea
-                id="writtenReview"
-                name="writtenReview"
-                class="form-textarea"
-                rows="6"
-                placeholder="มาแชร์ประสบการณ์เรียนวิชานี้ให้เพื่อน ๆ ฟังกัน...
+              <textarea id="writtenReview" name="writtenReview" class="form-textarea" rows="6" placeholder="มาแชร์ประสบการณ์เรียนวิชานี้ให้เพื่อน ๆ ฟังกัน...
 
-เช่น รูปแบบการสอน ปริมาณงาน ลักษณะข้อสอบ การวัดผล ข้อดี-ข้อเสีย และคำแนะนำสำหรับน้องที่จะเรียน"
-              ></textarea>
+เช่น รูปแบบการสอน ปริมาณงาน ลักษณะข้อสอบ การวัดผล ข้อดี-ข้อเสีย และคำแนะนำสำหรับน้องที่จะเรียน"></textarea>
               <span class="form-hint">เขียนอย่างตรงไปตรงมา เนื้อหาของคุณจะช่วยเพื่อน ๆ ได้มาก</span>
             </div>
           </div>
 
           <!-- ─── SUBMIT ───────────────────────────────────── -->
           <button type="submit" id="submitBtn" class="btn-submit">
-            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="22" y1="2" x2="11" y2="13"/>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
             </svg>
             ส่งรีวิว
           </button>
@@ -488,10 +503,12 @@
       <strong>Review SWU Free Elective</strong> — พื้นที่แบ่งปันประสบการณ์จากนักศึกษา มศว
     </p>
     <p class="footer__warning">
-      <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:text-bottom; margin-right:4px;">
-        <circle cx="12" cy="12" r="10"/>
-        <line x1="12" y1="8" x2="12" y2="12"/>
-        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      <svg class="ui-icon ui-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"
+        style="display:inline-block; vertical-align:text-bottom; margin-right:4px;">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="8" x2="12" y2="12" />
+        <line x1="12" y1="16" x2="12.01" y2="16" />
       </svg>
       รีวิวเหล่านี้จัดเก็บเฉพาะในเบราว์เซอร์ของคุณเท่านั้น ไม่มีการซิงก์ระหว่างผู้ใช้คนอื่น
     </p>
@@ -502,4 +519,5 @@
   <script src="js/storage.js"></script>
   <script src="js/review.js"></script>
 </body>
+
 </html>
