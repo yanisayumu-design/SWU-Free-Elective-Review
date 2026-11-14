@@ -184,8 +184,21 @@ function doGet(e) {
 }
 
 // ── POST: รับรีวิวใหม่จากหน้าเว็บแล้วบันทึกต่อท้าย Sheet ───────────────────
+// ใช้ LockService เพื่อจัดการคิวเมื่อมีผู้ใช้กดส่งพร้อมกัน (ป้องกัน Race Condition / บันทึกทับแถว)
 function doPost(e) {
+  var lock = LockService.getScriptLock();
+  var hasLock = false;
+
   try {
+    // รอคิวขอล็อคบันทึกข้อมูลสูงสุด 30 วินาที
+    hasLock = lock.tryLock(30000);
+    if (!hasLock) {
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "busy",
+        message: "Server busy, lock timeout. Please retry in a moment."
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
     var sheet = getTargetSheet();
     var contents = e.postData ? e.postData.contents : "";
     var data = JSON.parse(contents);
@@ -233,6 +246,9 @@ function doPost(e) {
       reviewId        // 18. รหัสอ้างอิง
     ]);
 
+    // บังคับให้เขียนลง Sheet ทันทีเพื่อความปลอดภัยของข้อมูลก่อนปล่อยล็อค
+    SpreadsheetApp.flush();
+
     return ContentService.createTextOutput(JSON.stringify({
       status: "success",
       message: "Saved to Google Sheet!",
@@ -244,6 +260,10 @@ function doPost(e) {
       status: "error",
       message: error.toString()
     })).setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    if (hasLock) {
+      lock.releaseLock();
+    }
   }
 }
 

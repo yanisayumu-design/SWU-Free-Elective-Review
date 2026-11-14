@@ -1085,6 +1085,19 @@ select.form-select:disabled {
   transform: translateY(0);
 }
 
+.btn-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* ── Success Message ─────────────────────────────────────────── */
 #successMessage {
   display: none;

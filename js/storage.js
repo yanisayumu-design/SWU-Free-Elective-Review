@@ -14,6 +14,80 @@
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyZ2RdY7ShRLpefBHDDh7tDf4gOa4AIamyhdNGgHj7gDGicC9jtl54ODf80E8eRydV30g/exec";
 
 const STORAGE_KEY = "swu_reviews";
+const PENDING_QUEUE_KEY = "swu_pending_reviews";
+
+/**
+ * Returns pending reviews waiting to be synced to Google Sheets.
+ * @returns {Array<Object>}
+ */
+function getPendingReviews() {
+  try {
+    const raw = localStorage.getItem(PENDING_QUEUE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Adds a review to the retry queue.
+ * @param {Object} review
+ */
+function enqueuePendingReview(review) {
+  try {
+    const queue = getPendingReviews();
+    if (!queue.some(r => r.reviewId === review.reviewId)) {
+      queue.push(review);
+      localStorage.setItem(PENDING_QUEUE_KEY, JSON.stringify(queue));
+    }
+  } catch (err) {
+    console.warn("Could not enqueue pending review:", err);
+  }
+}
+
+/**
+ * Removes a review from the retry queue after successful sync.
+ * @param {string} reviewId
+ */
+function dequeuePendingReview(reviewId) {
+  try {
+    const queue = getPendingReviews().filter(r => r.reviewId !== reviewId);
+    localStorage.setItem(PENDING_QUEUE_KEY, JSON.stringify(queue));
+  } catch (err) {
+    console.warn("Could not dequeue pending review:", err);
+  }
+}
+
+/**
+ * Flushes all pending reviews to Google Sheets (e.g. on page load, reconnect, or retry).
+ */
+async function flushPendingReviews() {
+  if (!GOOGLE_SCRIPT_URL || !GOOGLE_SCRIPT_URL.startsWith("http")) return;
+  const queue = getPendingReviews();
+  if (!queue || queue.length === 0) return;
+
+  for (const review of queue) {
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(review),
+      });
+      // ถือว่าส่งถึงแล้ว
+      dequeuePendingReview(review.reviewId);
+    } catch (err) {
+      console.warn("Retrying review sync failed, will keep in queue:", review.reviewId, err);
+      break; // หยุดลูปไว้ก่อนถ้าเน็ตมีปัญหา
+    }
+  }
+}
+
+if (typeof window !== "undefined") {
+  window.addEventListener("online", () => {
+    flushPendingReviews();
+  });
+}
 
 /**
  * Normalizes class schedule strings to standard "Hr:min - Hr:min" format.
@@ -72,32 +146,38 @@ function getAllReviews() {
 /**
  * Saves a new review locally and syncs to Google Sheets cloud.
  * Assigns a unique reviewId and createdAt timestamp automatically.
+ * Supports auto-retry queue in case of network issues or server concurrency.
  * @param {Object} reviewData
- * @returns {Object} the saved review
+ * @returns {Promise<Object>} the saved review
  */
-function saveReview(reviewData) {
+async function saveReview(reviewData) {
   const reviews = getAllReviews();
   const newReview = {
     ...reviewData,
     reviewId: generateId(),
     createdAt: new Date().toISOString(),
   };
+
+  // 1. บันทึกลง localStorage ทันที (Optimistic Update แสดงผลทันใจ)
   reviews.push(newReview);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
 
-  // ส่งข้อมูลเข้า Google Sheets แบบเบื้องหลัง (Background POST)
+  // 2. ใส่ลงคิวสำรอง Pending Queue เสมอเพื่อป้องกันข้อมูลตกหล่น
+  enqueuePendingReview(newReview);
+
+  // 3. ส่งข้อมูลเข้า Google Sheets แบบเบื้องหลังพร้อมระบบ Retry
   if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.startsWith("http")) {
     try {
-      fetch(GOOGLE_SCRIPT_URL, {
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors", // จำเป็นสำหรับ Google Apps Script เพื่อเลี่ยง CORS
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(newReview),
-      }).catch(err => {
-        console.warn("Google Sheets sync failed:", err);
       });
+      // นำออกจากคิวเมื่อยิง Request สำเร็จ
+      dequeuePendingReview(newReview.reviewId);
     } catch (err) {
-      console.warn("Could not dispatch to Google Sheets:", err);
+      console.warn("Direct Google Sheets sync failed, will be retried via queue:", err);
     }
   }
 
@@ -107,10 +187,14 @@ function saveReview(reviewData) {
 /**
  * Syncs reviews from Google Sheets in the background.
  * If data is retrieved, updates localStorage and invokes the onUpdated callback.
+ * Safely merges with local pending reviews to prevent data loss.
  * @param {Function} [onUpdated]
  */
 async function syncReviewsFromCloud(onUpdated) {
   if (!GOOGLE_SCRIPT_URL || !GOOGLE_SCRIPT_URL.startsWith("http")) return;
+
+  // ลองส่งรีวิวที่ค้างอยู่ในคิวก่อนซิงก์
+  flushPendingReviews();
 
   try {
     const resp = await fetch(GOOGLE_SCRIPT_URL);
@@ -122,10 +206,17 @@ async function syncReviewsFromCloud(onUpdated) {
       cloudReviews.forEach(r => {
         if (r.classSchedule) r.classSchedule = cleanScheduleString(r.classSchedule);
       });
-      // อัปเดตข้อมูลล่าสุดจาก Google Sheets ลงในแคช localStorage
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudReviews));
+
+      // รวมรีวิวที่ส่งไปแล้วในเครื่องแต่ชีตอาจยังบันทึกไม่เสร็จ เพื่อไม่ให้รีวิวหายชั่วคราว
+      const pending = getPendingReviews();
+      const cloudIds = new Set(cloudReviews.map(r => r.reviewId));
+      const unpersistedLocal = pending.filter(p => !cloudIds.has(p.reviewId));
+      const mergedReviews = [...unpersistedLocal, ...cloudReviews];
+
+      // อัปเดตข้อมูลล่าสุดลงในแคช localStorage
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(mergedReviews));
       if (typeof onUpdated === "function") {
-        onUpdated(cloudReviews);
+        onUpdated(mergedReviews);
       }
     }
   } catch (err) {

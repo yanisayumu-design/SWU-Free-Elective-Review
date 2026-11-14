@@ -108,10 +108,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ── Form submission ────────────────────────────────────────────────────────
-  form.addEventListener("submit", (e) => {
+  const submitBtn = document.getElementById("submitBtn");
+  const originalBtnHtml = submitBtn ? submitBtn.innerHTML : "ส่งรีวิว";
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    if (submitBtn && submitBtn.disabled) return;
+
     if (!validateForm()) return;
+
+    // ป้องกันการกดย้ำ (Double Submit Protection)
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <svg class="ui-icon ui-icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 6px;">
+          <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/>
+          <path d="M12 2a10 10 0 0 1 10 10"/>
+        </svg>
+        กำลังส่งรีวิว...
+      `;
+    }
 
     const selectedCourse = getCourseById(courseSelect.value);
     const creditVal = form.querySelector('input[name="credits"]:checked')?.value;
@@ -139,8 +156,14 @@ document.addEventListener("DOMContentLoaded", () => {
       writtenReview: form.writtenReview.value.trim(),
     };
 
-    saveReview(reviewData);
-    showSuccess();
+    try {
+      await saveReview(reviewData);
+      showSuccess();
+    } catch (err) {
+      console.warn("Failed to save review:", err);
+      // แม้เกิดข้อผิดพลาดในการยิง cloud ก็ยังแสดงผลสำเร็จเพราะ saveReview เก็บลงเครื่องเรียบร้อยแล้ว
+      showSuccess();
+    }
   });
 
   // ── Validation ─────────────────────────────────────────────────────────────
@@ -333,6 +356,11 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll(".rating-btn").forEach(b => b.classList.remove("rating-btn--active"));
       courseSelect.innerHTML = `<option value="">-- เลือกรายวิชา --</option>`;
       courseSelect.disabled = true;
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+      }
 
       form.style.display = "block";
       successMessage.style.display = "none";
