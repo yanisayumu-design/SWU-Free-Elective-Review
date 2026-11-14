@@ -40,10 +40,10 @@ function doGet(e) {
     var sheet = getTargetSheet();
     var rows = sheet.getDataRange().getValues();
 
-    // ถ้าชีตยังว่าง ให้สร้างหัวตารางและข้อมูลตัวอย่างให้อัตโนมัติ
+    // ถ้าชีตว่างหรือมีแค่หัวตาราง ให้ส่งอาเรย์ว่างเปล่ากลับไป
     if (rows.length <= 1) {
-      setupCleanSheet();
-      rows = sheet.getDataRange().getValues();
+      return ContentService.createTextOutput(JSON.stringify([]))
+        .setMimeType(ContentService.MimeType.JSON);
     }
 
     var headers = rows[0];

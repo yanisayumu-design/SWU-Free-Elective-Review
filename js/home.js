@@ -9,9 +9,6 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Seed sample data matching master course catalog on first visit
-  seedSampleReviews();
-
   // ── DOM references ─────────────────────────────────────────────────────────
   const searchInput   = document.getElementById("searchInput");
   const facultyFilter = document.getElementById("facultyFilter");
